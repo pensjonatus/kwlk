@@ -1,0 +1,56 @@
+.screen {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.screen button {
+  cursor: pointer;
+  border: var(--poster-border);
+  width: 7ch;
+  height: 7ch;
+  border-radius: 50%;
+  font-size: 32px;
+  text-align: center;
+  font-family: var(--poster-font);
+  line-height: 1;
+}
+
+.screen button:active {
+  transform: scale(1.1);
+}
+
+.left {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background-color: var(--bright-color);
+  font-weight: 700;
+}
+
+.right {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgba(0, 0, 14, 0.6);
+  color: white;
+}
+
+.price {
+  text-align: center;
+  font-size: 1.6rem;
+  background-color: var(--bright-color);
+  width: fit-content;
+  padding: 0 1ch;
+  margin: 0 auto;
+  margin-top: -12px;
+  border-radius: 16px;
+  border: var(--poster-border);
+}
+
+.grosz {
+  vertical-align: super;
+  font-size: 50%;
+}
