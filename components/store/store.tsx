@@ -1,12 +1,35 @@
-import { useState } from 'react';
-import styles from './store.module.css';
+import { useEffect, useState } from "react";
+import styles from "./store.module.css";
 
-type StoreProps = {
-  images: string[];
-};
+const images = [
+  "/products/armoire.png",
+  "/products/can-of-drink.png",
+  "/products/diamonds.png",
+  "/products/gloves.png",
+  "/products/gold-car.png",
+  "/products/merry-xmas.png",
+  "/products/gold-necklace.png",
+  "/products/pen.png",
+  "/products/pocket-watch.png",
+  "/products/record-player.png",
+  "/products/soda-chupa.png",
+  "/products/red-car.png",
+  "/products/sapphire.png",
+  "/products/mug.png",
+  "/products/speaker.png",
+  "/products/tablet.png",
+  "/products/tape.png",
+  "/products/watch.png",
+  "/products/watering-can.png",
+  "/products/white-car.png",
+];
 
-export default function Store({ images }: StoreProps) {
-  const [productIndex, setProductIndex] = useState(0);
+export default function Store() {
+  const [productIndex, setProductIndex] = useState(undefined);
+
+  useEffect(function () {
+    setProductIndex(0);
+  }, []);
 
   function handleClick() {
     if (productIndex === images.length - 1) {
@@ -15,6 +38,8 @@ export default function Store({ images }: StoreProps) {
       setProductIndex(productIndex + 1);
     }
   }
+
+  if (productIndex === undefined) return <>Ładowanie...</>;
 
   return (
     <div

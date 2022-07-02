@@ -1,13 +1,9 @@
 import Link from "next/link";
 import Layout from "../components/layout";
-import Sensible from "./sensible";
 
 export default function Home() {
   return (
-    <Layout
-      title="Rozważna konsumpcja"
-      description="Interaktywny plakat na temat rozważnej konsumpcji"
-    >
+    <Layout title="Dom" description="Strona artysty Paweł Kowaluk">
       <Link href="/sensible">
         <a>Rozważna konsumpcja</a>
       </Link>

@@ -1,16 +1,8 @@
 import styles from "./sensible.module.css";
 import Layout from "../../components/layout";
 import Store from "../../components/store";
-import { getImagePaths } from "../../lib/products";
-import { GetStaticProps } from "next/types";
 
-type SensibleProps = {
-  allImages: string[];
-};
-
-export default function Sensible({ allImages }: SensibleProps) {
-  console.log("ALL IMAGES IN THE PAGE COMPONENT", allImages);
-
+export default function Sensible() {
   return (
     <Layout
       title="Rozważna konsumpcja"
@@ -19,7 +11,7 @@ export default function Sensible({ allImages }: SensibleProps) {
       <div className={styles.wrapper}>
         <div className={styles.inner}>
           <h1 className={styles.heading}>Rozważna konsumpcja</h1>
-          {allImages && <Store images={allImages} />}
+          <Store />
           <div className={styles.description}>
             Zwiększa zadowolenie klienta i maksymalizuje zwrot z wydanych
             środków
@@ -29,12 +21,3 @@ export default function Sensible({ allImages }: SensibleProps) {
     </Layout>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allImages = getImagePaths();
-  return {
-    props: {
-      allImages: allImages,
-    },
-  };
-};
