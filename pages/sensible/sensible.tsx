@@ -19,7 +19,7 @@ export default function Sensible({ allImages }: SensibleProps) {
       <div className={styles.wrapper}>
         <div className={styles.inner}>
           <h1 className={styles.heading}>Rozważna konsumpcja</h1>
-          <Store images={allImages} />
+          {allImages && <Store images={allImages} />}
           <div className={styles.description}>
             Zwiększa zadowolenie klienta i maksymalizuje zwrot z wydanych
             środków
