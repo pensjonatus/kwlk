@@ -4,6 +4,7 @@
   height: 60vh;
   background-size: cover;
   background-position: center;
+  border-radius: 4px;
 }
 
 .screen button {
