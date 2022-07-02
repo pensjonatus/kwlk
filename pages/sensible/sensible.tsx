@@ -2,7 +2,7 @@ import styles from "./sensible.module.css";
 import Layout from "../../components/layout";
 import Store from "../../components/store";
 import { getImagePaths } from "../../lib/products";
-import { GetStaticProps } from "next";
+import { GetStaticProps } from "next/types";
 
 type SensibleProps = {
   allImages: string[];
@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const allImages = getImagePaths();
   return {
     props: {
-      allImages,
+      allImages: allImages,
     },
   };
 };
