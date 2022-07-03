@@ -24,14 +24,56 @@ const images = [
   "/products/white-car.png",
 ];
 
+type MoneyProps = {
+  amount: number;
+  label: string;
+};
+
+function Money({ amount, label }: MoneyProps) {
+  return (
+    <div
+      className={styles.money}
+      style={{
+        color: amount < 0 && "red",
+      }}
+    >
+      {label}: {amount} PLN
+    </div>
+  );
+}
+
 export default function Store() {
   const [productIndex, setProductIndex] = useState(undefined);
+  const [funds, setFunds] = useState(Math.round(Math.random() * 920));
+  const [price, setPrice] = useState(undefined);
+  const [giveBonus, setGiveBonus] = useState(false);
+  const [bonus, setBonus] = useState(0);
 
   useEffect(function () {
     setProductIndex(0);
   }, []);
 
-  function handleClick() {
+  useEffect(
+    function () {
+      setPrice(Math.round(Math.random() * 69));
+    },
+    [productIndex]
+  );
+
+  function handleClick(buy: boolean) {
+    const k100roll = Math.random();
+    if (k100roll < 0.1) {
+      setGiveBonus(true);
+      const bonusAmount = Math.round(Math.random() * 74);
+      setBonus(bonusAmount);
+      setFunds(funds + bonusAmount);
+    } else {
+      setGiveBonus(false);
+    }
+
+    if (buy) {
+      setFunds(funds - price);
+    }
     if (productIndex === images.length - 1) {
       setProductIndex(0);
     } else {
@@ -48,16 +90,24 @@ export default function Store() {
         backgroundImage: `url(${images[productIndex]})`,
       }}
     >
-      <div className={styles.price}>
-        {Math.round(Math.random() * 69)}
-        <span className={styles.grosz}>99</span> PLN
+      <div className={styles.moneyBar}>
+        <Money amount={price} label="Cena" />
+        <div className={styles.amountBox}>
+          <Money amount={funds} label="Środki" />
+          {giveBonus && <div className={styles.addedMoney}>+{bonus}</div>}
+        </div>
       </div>
-      <button className={styles.left} onClick={handleClick}>
+      <button className={styles.left} onClick={() => handleClick(true)}>
         Kup
       </button>
-      <button className={styles.right} onClick={handleClick}>
+      <button className={styles.right} onClick={() => handleClick(false)}>
         Nie kupuj
       </button>
+      {giveBonus && (
+        <div className={styles.bonus}>
+          <Money amount={bonus} label="Bonifikata" />
+        </div>
+      )}
     </div>
   );
 }

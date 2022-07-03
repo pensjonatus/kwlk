@@ -39,19 +39,65 @@
   color: white;
 }
 
-.price {
+.moneyBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.money {
   text-align: center;
   font-size: 1.6rem;
   background-color: var(--bright-color);
   width: fit-content;
-  padding: 0 1ch;
   margin: 0 auto;
+  padding: 0 1ch;
   margin-top: -12px;
   border-radius: 16px;
   border: var(--poster-border);
 }
 
-.grosz {
-  vertical-align: super;
-  font-size: 50%;
+@keyframes popIn {
+  from {
+    opacity: 1;
+    transform: scale(3);
+  }
+}
+
+.bonus {
+  position: absolute;
+  bottom: 50%;
+  left: 40%;
+  animation-name: popIn;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  opacity: 0;
+}
+
+@keyframes popUp {
+  from {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+}
+
+.amountBox {
+  position: relative;
+}
+
+.addedMoney {
+  opacity: 0;
+  animation-name: popUp;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  color: green;
+  font-weight: 900;
+  text-align: center;
+  font-size: 3rem;
+  text-shadow: 5px 6px 4px rgba(66, 68, 90, 1);
 }

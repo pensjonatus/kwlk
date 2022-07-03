@@ -2,7 +2,7 @@
 
 .wrapper {
   --dark-color: rgba(0, 0, 12, 0.8);
-  --bright-color: #f2d233b9;
+  --bright-color: #f2d233;
   --poster-border: 3px solid var(--dark-color);
   --poster-font: "Gentium Book Plus", serif;
   font-family: var(--poster-font);
