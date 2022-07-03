@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Vault from "../vault";
 import styles from "./store.module.css";
 
 const images = [
@@ -48,6 +49,7 @@ export default function Store() {
   const [price, setPrice] = useState(undefined);
   const [giveBonus, setGiveBonus] = useState(false);
   const [bonus, setBonus] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(function () {
     setProductIndex(0);
@@ -58,6 +60,15 @@ export default function Store() {
       setPrice(Math.round(Math.random() * 69));
     },
     [productIndex]
+  );
+
+  useEffect(
+    function () {
+      if (funds > 10000) {
+        setIsComplete(true);
+      }
+    },
+    [funds]
   );
 
   function handleClick(buy: boolean) {
@@ -82,6 +93,8 @@ export default function Store() {
   }
 
   if (productIndex === undefined) return <>Ładowanie...</>;
+
+  if (isComplete) return <Vault amount={funds} />;
 
   return (
     <div
