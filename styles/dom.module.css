@@ -1,0 +1,46 @@
+.outer {
+  background-image: url("/kwlk.png");
+  background-size: 12px;
+  overflow: hidden;
+  --bright-color: #ffc400;
+  --dark-color: #162794;
+}
+
+.inner {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  min-height: 100vh;
+  padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  --border-spec: 6px solid var(--bright-color);
+  border-left: var(--border-spec);
+  border-right: var(--border-spec);
+}
+
+.header {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.title {
+    font-size: 4rem;
+}
+
+.inner a {
+  background-color: var(--dark-color);
+  color: var(--bright-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  padding: 3rem 0;
+  border-radius: 8px;
+  border: 1px solid gray;
+}
+
+.inner a:hover {
+    transform: scale(1.1);
+}
