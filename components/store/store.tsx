@@ -30,12 +30,23 @@ type MoneyProps = {
   label: string;
 };
 
+function getColor(amount: number) {
+  if (amount < 0) {
+    return "red";
+  }
+
+  if (amount > 1000) {
+    return "green";
+  }
+  return "inherit";
+}
+
 function Money({ amount, label }: MoneyProps) {
   return (
     <div
       className={styles.money}
       style={{
-        color: amount < 0 && "red",
+        color: getColor(amount),
       }}
     >
       {label}: {amount} PLN
