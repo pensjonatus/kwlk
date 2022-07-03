@@ -2,8 +2,8 @@
   background-image: url("/kwlk.png");
   background-size: 12px;
   overflow: hidden;
-  --bright-color: #ffc400;
-  --dark-color: #162794;
+  --bright-color: #67e0b1;
+  --dark-color: #ff421c;
 }
 
 .inner {
@@ -11,7 +11,7 @@
   margin: 0 auto;
   background-color: white;
   min-height: 100vh;
-  padding: 3rem 5rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -21,26 +21,24 @@
 }
 
 .header {
-    text-align: center;
-    font-size: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 .title {
-    font-size: 4rem;
+  font-size: 4rem;
 }
 
-.inner a {
-  background-color: var(--dark-color);
-  color: var(--bright-color);
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-align: center;
+.feature {
+  padding: 1rem;
+  --border-spec: 1px solid gray;
+  border-top: var(--border-spec);
+  border-bottom: var(--border-spec);
+}
+
+.featureLink {
+  display: block;
+  margin-left: auto;
+  width: fit-content;
   text-decoration: none;
-  padding: 3rem 0;
-  border-radius: 8px;
-  border: 1px solid gray;
-}
-
-.inner a:hover {
-    transform: scale(1.1);
 }
