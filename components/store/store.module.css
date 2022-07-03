@@ -61,14 +61,15 @@
 @keyframes popIn {
   from {
     opacity: 1;
-    transform: scale(3);
+    transform: scale(0.9);
   }
 }
 
 .bonus {
   position: absolute;
   bottom: 50%;
-  left: 40%;
+  left: 0;
+  right: 0;
   animation-name: popIn;
   animation-duration: 3s;
   animation-iteration-count: 1;
