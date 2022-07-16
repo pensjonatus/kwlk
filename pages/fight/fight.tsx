@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Image from "next/image";
-import { forwardRef, useRef, useState } from "react";
+import Link from "next/link";
+import { FormEvent, useState } from "react";
 import Layout from "../../components/layout";
 import styles from "./fight.module.css";
 import shirt from "./img/shirt.png";
@@ -78,13 +79,20 @@ const fields = [
 ];
 
 function FormModal({ setVisible }) {
+  const [showToast, setShowToast] = useState(false);
+  function closeModal() {
+    setVisible(false);
+  }
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    setShowToast(true);
+  }
+
   return (
     <div className={styles.formBackground}>
-      <form className={styles.form}>
-        <button
-          className={styles.closeButton}
-          onClick={() => setVisible(false)}
-        >
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <button className={styles.closeButton} onClick={closeModal}>
           x
         </button>
         {fields.map((f, i) => (
@@ -93,7 +101,18 @@ function FormModal({ setVisible }) {
             <input id={f} type="text" className={styles.formField} />
           </div>
         ))}
-        <button className={styles.button}>Dalej</button>
+        <input className={styles.button} type="submit" value="Dalej" />
+        {showToast && (
+          <div className={styles.toast}>
+            <div>
+              Niestety, nie kwalifikujesz się do naszego programu
+              subskrycytyjnego. 😐
+            </div>
+            <button onClick={closeModal} className={styles.button}>
+              OK
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );
@@ -129,6 +148,14 @@ export default function Fight() {
               )}
             </div>
           ))}
+        </section>
+        <section className={styles.links}>
+          <Link href="/">
+            <a>W Twojej okolicy</a>
+          </Link>
+          <Link href="/">
+            <a>Zostań kompanem</a>
+          </Link>
         </section>
       </div>
     </Layout>
