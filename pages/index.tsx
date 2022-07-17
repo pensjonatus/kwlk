@@ -1,27 +1,7 @@
 import Link from "next/link";
 import Layout from "../components/layout";
 import styles from "../styles/dom.module.css";
-import { fightDescription } from "./fight/fight";
-import { sensibleDescription } from "./sensible";
-
-type Feature = {
-  title: string;
-  description: React.ReactNode;
-  link: string;
-};
-
-const featured: Feature[] = [
-  {
-    title: "Rozważna konsumpcja",
-    description: <>{sensibleDescription}</>,
-    link: "/sensible",
-  },
-  {
-    title: "Walcz z systemem!",
-    description: <>{fightDescription}</>,
-    link: "/fight",
-  },
-];
+import { featured } from "../components/featured";
 
 const pageDescription = "Strona artysty Paweł Kowaluk";
 
