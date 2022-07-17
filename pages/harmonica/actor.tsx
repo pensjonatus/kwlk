@@ -15,6 +15,7 @@ type ActorProps = {
   width: number;
   keepInView: boolean;
   movementSpeed: number;
+  initiallyFacingLeft: boolean;
 };
 
 export default function Actor({
@@ -25,11 +26,13 @@ export default function Actor({
   width,
   movementSpeed,
   keepInView,
+  initiallyFacingLeft,
 }: ActorProps) {
   const actorRef: MutableRefObject<HTMLDivElement> = useRef();
   const [actorPosition, setActorPosition] = useState(initialPosition);
   const [actorTarget, setActorTarget] = useState(undefined);
   const [movementInterval, setMovementInterval] = useState(undefined);
+  const [movingLeft, setMovingLeft] = useState(initiallyFacingLeft);
 
   const clearMovementInterval = useCallback(() => {
     if (movementInterval) {
@@ -37,6 +40,19 @@ export default function Actor({
       setMovementInterval(undefined);
     }
   }, [movementInterval]);
+
+  const changeActorDirection = useCallback(
+    (direction) => {
+      if (direction === -1 && !movingLeft) {
+        setMovingLeft(true);
+      }
+
+      if (direction === 1 && movingLeft) {
+        setMovingLeft(false);
+      }
+    },
+    [movingLeft]
+  );
 
   useEffect(
     function () {
@@ -71,6 +87,7 @@ export default function Actor({
               }
 
               const direction = actorTarget > currentPosition ? 1 : -1;
+              changeActorDirection(direction);
               return currentPosition + movementSpeed * direction;
             });
           }, 1)
@@ -81,8 +98,9 @@ export default function Actor({
       actorTarget,
       movementInterval,
       actorPosition,
-      clearMovementInterval,
       movementSpeed,
+      clearMovementInterval,
+      changeActorDirection,
     ]
   );
 
@@ -116,7 +134,14 @@ export default function Actor({
       }}
       ref={actorRef}
     >
-      <Image src={avatar} alt="Józia" objectFit="fill" />
+      <Image
+        src={avatar}
+        alt="Józia"
+        objectFit="fill"
+        style={{
+          transform: movingLeft && "scaleX(-1)",
+        }}
+      />
     </div>
   );
 }
