@@ -6,6 +6,8 @@ import React, {
   useState,
 } from "react";
 import Image, { StaticImageData } from "next/image";
+import styles from "./harmonica.module.css";
+import clsx from "clsx";
 
 type ActorProps = {
   initialPosition: number;
@@ -13,6 +15,7 @@ type ActorProps = {
   className: string;
   avatar: StaticImageData;
   width: number;
+  height: number;
   keepInView: boolean;
   movementSpeed: number;
   initiallyFacingLeft: boolean;
@@ -24,6 +27,7 @@ export default function Actor({
   className,
   avatar,
   width,
+  height,
   movementSpeed,
   keepInView,
   initiallyFacingLeft,
@@ -57,10 +61,6 @@ export default function Actor({
   useEffect(
     function () {
       if (targetX !== actorTarget) {
-        console.log("User requested new actor target", {
-          targetX,
-          actorTarget,
-        });
         clearMovementInterval();
         setActorTarget(targetX);
       }
@@ -71,12 +71,6 @@ export default function Actor({
   useEffect(
     function () {
       if (actorTarget && !movementInterval && actorPosition !== actorTarget) {
-        console.log("Received update, setting new interval", {
-          actorTarget,
-          movementInterval,
-          actorPosition,
-        });
-
         clearMovementInterval();
 
         setMovementInterval(
@@ -107,7 +101,6 @@ export default function Actor({
   useEffect(
     function () {
       if (movementInterval && actorPosition === actorTarget) {
-        console.log("Clearing interval");
         clearMovementInterval();
       }
     },
@@ -127,21 +120,16 @@ export default function Actor({
 
   return (
     <div
-      className={className}
+      className={clsx(className, styles.actor)}
       style={{
         left: actorPosition,
         width: width,
+        height: height,
+        transform: movingLeft && "scaleX(-1)",
       }}
       ref={actorRef}
     >
-      <Image
-        src={avatar}
-        alt="Józia"
-        objectFit="fill"
-        style={{
-          transform: movingLeft && "scaleX(-1)",
-        }}
-      />
+      <Image src={avatar} alt="Józia" layout="fill" />
     </div>
   );
 }
