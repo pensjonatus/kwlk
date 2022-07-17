@@ -1,7 +1,6 @@
 import React, {
   CSSProperties,
   MutableRefObject,
-  StyleHTMLAttributes,
   useCallback,
   useEffect,
   useRef,
@@ -21,6 +20,7 @@ type ActorProps = {
   keepInView: boolean;
   movementSpeed: number;
   initiallyFacingLeft: boolean;
+  description: string;
 };
 
 export default function Actor({
@@ -33,6 +33,7 @@ export default function Actor({
   movementSpeed,
   keepInView,
   initiallyFacingLeft,
+  description,
 }: ActorProps) {
   const actorRef: MutableRefObject<HTMLDivElement> = useRef();
   const [actorPosition, setActorPosition] = useState(initialPosition);
@@ -131,8 +132,12 @@ export default function Actor({
   }
 
   return (
-    <div className={clsx(className, styles.actor)} style={actorStyle} ref={actorRef}>
-      <Image src={avatar} alt="Józia" layout="fill" />
+    <div
+      className={clsx(className, styles.actor)}
+      style={actorStyle}
+      ref={actorRef}
+    >
+      <Image src={avatar} alt={description} layout="fill" />
     </div>
   );
 }

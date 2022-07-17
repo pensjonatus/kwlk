@@ -60,6 +60,7 @@ export default function Harmonica() {
             movementSpeed={2}
             keepInView={false}
             initiallyFacingLeft={false}
+            description="Dziadek Marek"
           />
           <Actor
             targetX={joziaTargetX}
@@ -71,6 +72,7 @@ export default function Harmonica() {
             movementSpeed={3}
             keepInView={true}
             initiallyFacingLeft={false}
+            description="Józefka"
           />
           {[1, 2, 3, 4, 5, 6].map((o, i) => (
             <div
