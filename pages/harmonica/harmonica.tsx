@@ -35,6 +35,7 @@ export default function Harmonica() {
           width={joziaWidth}
           movementSpeed={3}
           keepInView={true}
+          initiallyFacingLeft={false}
         />
       </div>
     </Layout>
