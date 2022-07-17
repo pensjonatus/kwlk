@@ -6,12 +6,14 @@ type MusicBoxProps = {
   audioFilePath: string;
   autoPlay: boolean;
   loop: boolean;
+  className: string;
 };
 
 export default function MusicBox({
   audioFilePath,
   autoPlay,
   loop,
+  className
 }: MusicBoxProps) {
   const [playing, togglePlaying, setPlaying] = useAudio(audioFilePath, loop);
 
@@ -25,17 +27,9 @@ export default function MusicBox({
   );
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 50,
-        left: 50,
-        zIndex: 500,
-      }}
-    >
-      <button onClick={togglePlaying} className={styles.button}>
+    
+      <button onClick={togglePlaying} className={className}>
         {playing ? "Wyłącz" : "Włącz"} muzykę
       </button>
-    </div>
   );
 }

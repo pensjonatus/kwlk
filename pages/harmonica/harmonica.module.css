@@ -2,20 +2,11 @@
   --floor-thickness: 64px;
   position: relative;
   width: 9000px;
-  height: 90vh;
+  height: 100vh;
   background-image: url("/harmonica/wallpaper.png");
   user-select: none;
-}
-
-.ceiling {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 32px;
-  background-color: darkgray;
-  background-image: url("/harmonica/ceiling.png");
-  background-size: 300px;
+  overflow: hidden;
+  scroll-margin: 0;
 }
 
 .floor {
@@ -31,19 +22,28 @@
 .window {
   position: absolute;
   bottom: var(--floor-thickness);
-  height: 70vh;
-  width: 400px;
+  height: 700px;
+  width: 350px;
 }
 
 .windowView {
-  position: relative;
+  position: absolute;
   background-image: url("/harmonica/landscape.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@media only screen and (max-device-width: 1366px) {
+  .windowView {
+    background-attachment: scroll;
+    background-size: cover;
+  }
 }
 
 .windowPane {
@@ -62,10 +62,36 @@
 }
 
 .jozia {
-  scroll-margin: 40vw;
+  scroll-margin-left: 40vw;
+  scroll-margin-right: 40vw;
+  scroll-margin-bottom: calc(var(--floor-thickness) / 2);
+}
+
+@media only screen and (max-width: 900px) {
+  div.jozia {
+    scroll-margin-left: 50px;
+    scroll-margin-right: 50px;
+    scroll-margin-bottom: var(--floor-thickness);
+    scroll-margin-top: calc(100vh - 200px);
+  }
 }
 
 .backgroundPlant {
   position: absolute;
   bottom: calc(var(--floor-thickness) - 20px);
+}
+
+.musicBoxButton {
+  position: fixed;
+  top: calc(var(--header-height) + 10px);
+  left: 10px;
+  z-index: 500;
+  border: none;
+  background-color: magenta;
+  color: white;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 3px 4px 8px magenta;
 }

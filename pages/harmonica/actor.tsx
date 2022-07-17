@@ -1,5 +1,7 @@
 import React, {
+  CSSProperties,
   MutableRefObject,
+  StyleHTMLAttributes,
   useCallback,
   useEffect,
   useRef,
@@ -118,17 +120,18 @@ export default function Actor({
     [actorPosition, keepInView]
   );
 
+  const actorStyle: CSSProperties = {
+    left: actorPosition,
+    width: width,
+    height: height,
+  };
+
+  if (movingLeft) {
+    actorStyle.transform = movingLeft && "scaleX(-1)";
+  }
+
   return (
-    <div
-      className={clsx(className, styles.actor)}
-      style={{
-        left: actorPosition,
-        width: width,
-        height: height,
-        transform: movingLeft && "scaleX(-1)",
-      }}
-      ref={actorRef}
-    >
+    <div className={clsx(className, styles.actor)} style={actorStyle} ref={actorRef}>
       <Image src={avatar} alt="Józia" layout="fill" />
     </div>
   );

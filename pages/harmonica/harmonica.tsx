@@ -7,6 +7,7 @@ import grandpaAvatar from "./img/GrandpaMark.png";
 import plant from "./img/plant.png";
 import MusicBox from "../../components/musicBox";
 import Image from "next/image";
+import Window from "./window";
 
 export const harmoniceDescription =
   "Drobna istota próbuje uciec przed wielką istotą. To oś fabuły naszej opowieści i oś fabuły naszego życia.";
@@ -27,6 +28,7 @@ export default function Harmonica() {
         audioFilePath="/sfx/symphony.mp3"
         autoPlay={false}
         loop={true}
+        className={styles.musicBoxButton}
       />
       <div className={styles.wrapper}>
         <div
@@ -34,20 +36,8 @@ export default function Harmonica() {
           onClick={updateJoziaPosition}
           ref={roomRef}
         >
-          <div className={styles.ceiling} />
-
           {[1, 2, 3, 4, 5, 6].map((o, i) => (
-            <div
-              className={styles.window}
-              key={i}
-              style={{
-                left: i * 1500 + 1000,
-              }}
-            >
-              <div className={styles.windowView}>
-                <div className={styles.windowPane} />
-              </div>
-            </div>
+            <Window magicNumber={i} key={i} />
           ))}
           {[1, 2, 3, 4, 5, 6].map((o, i) => (
             <div
@@ -64,7 +54,7 @@ export default function Harmonica() {
             targetX={joziaTargetX - 100}
             avatar={grandpaAvatar}
             className={styles.grandpa}
-            initialPosition={50}
+            initialPosition={250}
             width={300}
             height={800}
             movementSpeed={2}
