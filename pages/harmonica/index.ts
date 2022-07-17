@@ -1,3 +1,3 @@
-import Harmonica from "./hatmonica";
+import Harmonica from "./harmonica";
 
 export default Harmonica;
