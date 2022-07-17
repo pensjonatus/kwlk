@@ -1,6 +1,6 @@
-import { fightDescription } from "./fight/fight";
-import { harmoniceDescription } from "./harmonica/harmonica";
-import { sensibleDescription } from "./sensible";
+import { fightDescription } from "../pages/fight/fight";
+import { harmoniceDescription } from "../pages/harmonica/harmonica";
+import { sensibleDescription } from "../pages/sensible";
 
 type Feature = {
   title: string;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Layout from "../components/layout";
 import styles from "../styles/dom.module.css";
-import { featured } from "./featured";
+import { featured } from "../components/featured";
 
 const pageDescription = "Strona artysty Paweł Kowaluk";
 
