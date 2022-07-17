@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Layout from "../components/layout";
 import styles from "../styles/dom.module.css";
+import { fightDescription } from "./fight/fight";
+import { sensibleDescription } from "./sensible";
 
 type Feature = {
   title: string;
@@ -11,13 +13,13 @@ type Feature = {
 const featured: Feature[] = [
   {
     title: "Rozważna konsumpcja",
-    description: (
-      <>
-        Interaktywny plakat pomagający konsumentowi nie zagubić się pośród
-        wolnej woli nadanej przez prawa wolnego rynku.
-      </>
-    ),
+    description: <>{sensibleDescription}</>,
     link: "/sensible",
+  },
+  {
+    title: "Walcz z systemem!",
+    description: <>{fightDescription}</>,
+    link: "/fight",
   },
 ];
 

@@ -2,12 +2,12 @@ import styles from "./sensible.module.css";
 import Layout from "../../components/layout";
 import Store from "../../components/store";
 
+export const sensibleDescription =
+  "Interaktywny plakat pomagający konsumentowi nie zagubić się pośród wolnej woli nadanej przez prawa wolnego rynku.";
+
 export default function Sensible() {
   return (
-    <Layout
-      title="Rozważna konsumpcja"
-      description="Interaktywny plakat na temat rozważnej konsumpcji"
-    >
+    <Layout title="Rozważna konsumpcja" description={sensibleDescription}>
       <div className={styles.wrapper}>
         <div className={styles.inner}>
           <h1 className={styles.heading}>Rozważna konsumpcja</h1>
