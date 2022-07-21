@@ -1,5 +1,5 @@
 import { fightDescription } from "../pages/fight/fight";
-import { harmoniceDescription } from "../pages/harmonica/harmonica";
+import { josephkaDescription } from "../pages/josephka/josephka";
 import { sensibleDescription } from "../pages/sensible";
 
 type Feature = {
@@ -20,8 +20,8 @@ export const featured: Feature[] = [
     link: "/fight",
   },
   {
-    title: "Harmonijka",
-    description: <>{harmoniceDescription}</>,
-    link: "/harmonica",
+    title: "Józefka",
+    description: <>{josephkaDescription}</>,
+    link: "/josephka",
   },
 ];
