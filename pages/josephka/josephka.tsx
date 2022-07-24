@@ -12,7 +12,7 @@ export default function Josephka() {
         <meta name="description" content={josephkaDescription} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Engine />;
+      <Engine />
     </>
   );
 }
