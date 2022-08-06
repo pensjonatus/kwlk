@@ -62,14 +62,14 @@ export default function Which() {
         setResult(
           <>
             <p>
-              Jesteś człowiekiem numer{" "}
-              <strong style={{ fontSize: "120%" }}>
+              Jesteś istotą ludzką urodzoną jako numer{" "}
+              <strong style={{ fontSize: "140%", fontWeight: 600 }}>
                 {getNumberWithSpaces(personNumberSoFar)}
-              </strong>
-              .
+              </strong>{" "}
+              (około) w historii świata.
             </p>
             <p>
-              Co daje numer {getNumberWithSpaces(personNumberInYear)} w{" "}
+              Osobą number {getNumberWithSpaces(personNumberInYear)} w{" "}
               {selectedYear}r.
             </p>
           </>
