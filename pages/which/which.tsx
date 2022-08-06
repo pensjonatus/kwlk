@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import TextField from "@mui/material/TextField";
 import { ReactElement, useEffect, useState } from "react";
 import styles from "./which.module.css";
-import { people } from "./people";
+import { people } from "../../lib/people";
 
 export const whichDescription =
   "Zawsze chciałaś/eś to wiedzieć. Teraz możesz, podaj tylko swoją datę urodzenia.";
