@@ -54,8 +54,8 @@ function getUnitInPolish(unitInEnglish: string, value: number) {
     Number.parseInt(value.toString().slice(-1)) > 4 ||
     (value.toString().length > 1 &&
       (value.toString().endsWith("1") ||
-        value.toString().endsWith("0") ||
-        value === 0))
+        value.toString().endsWith("0")) ||
+        value === 0)
   ) {
     return valueMappings[unitInEnglish][2];
   }
