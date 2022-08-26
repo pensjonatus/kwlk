@@ -3,29 +3,22 @@
 .backdrop {
   width: 100vw;
   height: var(--main-height);
-  background: rgb(78, 164, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(78, 164, 255, 1) 0%,
-    rgba(17, 130, 250, 1) 35%,
-    rgba(9, 98, 191, 1) 100%
-  );
 }
 
 .wrapper {
   max-width: 700px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 8px;
   align-items: center;
   justify-content: center;
   margin: auto;
   text-align: center;
-  font-family: "Courgette", cursive;
 }
 
 .title {
   padding: 0 1rem;
+  line-height: 1;
 }
 
 .row {
