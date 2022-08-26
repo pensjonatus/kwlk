@@ -1,5 +1,6 @@
 import { fightDescription } from "../pages/fight/fight";
 import { harmoniceDescription } from "../pages/harmonica/harmonica";
+import { retirementDescription } from "../pages/retirement/retirement";
 import { sensibleDescription } from "../pages/sensible";
 import { whichDescription } from "../pages/which/which";
 
@@ -10,6 +11,11 @@ type Feature = {
 };
 
 export const featured: Feature[] = [
+  {
+    title: "Ile do emerytury",
+    description: <>{retirementDescription}</>,
+    link: "/retirement",
+  },
   {
     title: "Rozważna konsumpcja",
     description: <>{sensibleDescription}</>,
