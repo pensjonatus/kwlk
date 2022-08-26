@@ -6,7 +6,6 @@
   width: 100vw;
   height: var(--main-height);
   background: var(--leading-color);
-
   background: linear-gradient(
     90deg,
     rgba(34, 34, 34, 1) 0%,
@@ -17,6 +16,7 @@
     0 0 var(--shadow-thickness) white, 0 0 var(--shadow-thickness) white;
   font-weight: 800;
   color: black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .wrapper {
