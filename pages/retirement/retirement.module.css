@@ -35,3 +35,8 @@
 .unit {
   font-size: 150%;
 }
+
+.footNote {
+    margin-top: 3rem;
+    font-style: italic;
+}

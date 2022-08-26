@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Layout from "../../components/layout";
 import styles from "./retirement.module.css";
@@ -51,11 +52,10 @@ function getUnitInPolish(unitInEnglish: string, value: number) {
   }
 
   if (
+    value === 0 ||
     Number.parseInt(value.toString().slice(-1)) > 4 ||
     (value.toString().length > 1 &&
-      (value.toString().endsWith("1") ||
-        value.toString().endsWith("0")) ||
-        value === 0)
+      (value.toString().endsWith("1") || value.toString().endsWith("0")))
   ) {
     return valueMappings[unitInEnglish][2];
   }
@@ -96,6 +96,13 @@ export default function Retirement() {
               <span className={styles.unit}>{getUnitInPolish(key, value)}</span>
             </div>
           ))}
+          <div className={styles.footNote}>
+            A ile Tobie? Dowiedz się{" "}
+            <Link href="https://kalkulatory2.gofin.pl/Kalkulator-wieku-emerytalnego,12.html">
+              <a>tutaj</a>
+            </Link>
+            .
+          </div>
         </div>
       </div>
     </Layout>
