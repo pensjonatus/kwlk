@@ -1,8 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
 
 .backdrop {
+  --shadow-thickness: 2px;
+  --leading-color: rgb(34, 34, 34);
   width: 100vw;
   height: var(--main-height);
+  background: var(--leading-color);
+
+  background: linear-gradient(
+    90deg,
+    rgba(34, 34, 34, 1) 0%,
+    rgba(24, 24, 24, 1) 35%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  text-shadow: 0 0 var(--shadow-thickness) white,
+    0 0 var(--shadow-thickness) white, 0 0 var(--shadow-thickness) white;
+  font-weight: 800;
+  color: black;
 }
 
 .wrapper {
@@ -37,6 +51,6 @@
 }
 
 .footNote {
-    margin-top: 3rem;
-    font-style: italic;
+  margin-top: 3rem;
+  font-style: italic;
 }
