@@ -1,4 +1,5 @@
 import { TextField } from "@mui/material";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import React, { useEffect, useState } from "react";
 import styles from "./datePicker.module.css";
 
@@ -37,26 +38,12 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
 
   return (
     <div className={styles.date}>
-      <TextField
-        variant="outlined"
-        label="Rok"
-        value={year}
-        style={{ width: "5rem" }}
-        onChange={(event) => setYear(Number(event.target.value))}
-      />
-      <TextField
-        variant="outlined"
-        label="Miesiąc"
-        value={month}
-        style={{ width: "3rem" }}
-        onChange={(event) => setMonth(Number(event.target.value))}
-      />
-      <TextField
-        variant="outlined"
-        label="Dzień"
-        value={day}
-        style={{ width: "3rem" }}
-        onChange={(event) => setDay(Number(event.target.value))}
+      <DesktopDatePicker
+        label="Data urodzenia"
+        inputFormat="dd/MM/yyyy"
+        value={date}
+        onChange={setDate}
+        renderInput={(params) => <TextField {...params} />}
       />
     </div>
   );
