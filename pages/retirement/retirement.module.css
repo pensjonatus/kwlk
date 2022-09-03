@@ -4,7 +4,7 @@
   --shadow-thickness: 2px;
   --leading-color: rgb(255, 255, 255);
   width: 100vw;
-  height: var(--main-height);
+  min-height: var(--main-height);
   background: var(--leading-color);
   background: linear-gradient(
     90deg,
