@@ -2,32 +2,38 @@
 
 .backdrop {
   --shadow-thickness: 2px;
-  --leading-color: rgb(34, 34, 34);
+  --leading-color: rgb(255, 255, 255);
   width: 100vw;
   height: var(--main-height);
   background: var(--leading-color);
   background: linear-gradient(
     90deg,
-    rgba(34, 34, 34, 1) 0%,
-    rgba(24, 24, 24, 1) 35%,
-    rgba(0, 0, 0, 1) 100%
+    rgba(255, 255, 255, 1) 0%,
+    rgba(242, 242, 242, 1) 35%,
+    rgba(228, 228, 228, 1) 100%
   );
-  text-shadow: 0 0 var(--shadow-thickness) white,
-    0 0 var(--shadow-thickness) white, 0 0 var(--shadow-thickness) white;
-  font-weight: 800;
+  font-weight: 500;
   color: black;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .wrapper {
   max-width: 700px;
+  min-height: var(--main-height);
   display: flex;
   flex-direction: column;
   gap: 8px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   margin: auto;
   text-align: center;
+}
+
+.countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -39,6 +45,13 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.gender {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 .number {

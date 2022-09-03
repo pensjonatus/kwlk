@@ -21,7 +21,6 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
 
   useEffect(
     function () {
-      console.log("Using effect");
       const selectedDate: Date = new Date(
         Date.parse(
           `${formatDigits(year, 4)}-${formatDigits(month, 2)}-${formatDigits(

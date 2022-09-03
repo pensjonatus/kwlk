@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAudio } from "../../lib/audio";
+import { useAudio } from "../../hooks/useAudio";
 import styles from "./musicBox.module.css";
 
 type MusicBoxProps = {

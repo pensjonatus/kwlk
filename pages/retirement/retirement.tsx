@@ -1,5 +1,6 @@
-import Link from "next/link";
+import { Switch } from "@mui/material";
 import { useEffect, useState } from "react";
+import DatePicker from "../../components/date/datePicker";
 import Layout from "../../components/layout";
 import styles from "./retirement.module.css";
 
@@ -70,38 +71,68 @@ export default function Retirement() {
     minutes: 0,
     seconds: 0,
   });
+  const [dateOfBirth, setDateOfBirth] = useState<Date>(
+    new Date("10 July 1982")
+  );
+  const [male, setMale] = useState(true);
 
-  useEffect(function () {
-    const retirementDateMilliseconds = Date.parse("10 Jul 2047 00:12:00 GMT");
-    const interval = setInterval(function () {
-      const millisecondsNow = new Date().getTime();
-      const millisecondsTillTheEnd =
-        retirementDateMilliseconds - millisecondsNow;
-      setTimeLeft(getTimeFromMilliseconds(millisecondsTillTheEnd));
-    }, 1000);
+  function handleGenderChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setMale(event.target.checked);
+  }
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  useEffect(
+    function () {
+      const retirementDate = new Date(dateOfBirth.getTime());
+      retirementDate.setFullYear(
+        retirementDate.getFullYear() + (male ? 65 : 60)
+      );
+
+      const retirementDateMilliseconds = retirementDate.getTime();
+      const interval = setInterval(function () {
+        const millisecondsNow = new Date().getTime();
+        const millisecondsTillTheEnd =
+          retirementDateMilliseconds - millisecondsNow;
+        setTimeLeft(getTimeFromMilliseconds(millisecondsTillTheEnd));
+      }, 1000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    },
+    [dateOfBirth, male]
+  );
 
   return (
     <Layout title="Ile do emerytury" description={retirementDescription}>
       <div className={styles.backdrop}>
         <div className={styles.wrapper}>
-          <h1 className={styles.title}>Ile mi zostało do emerytury?</h1>
-          {Object.entries(timeLeft).map(([key, value]) => (
-            <div key={key} className={styles.row}>
-              <span className={styles.number}>{value}</span>
-              <span className={styles.unit}>{getUnitInPolish(key, value)}</span>
+          <div className={styles.countdown}>
+            <h1 className={styles.title}>
+              {timeLeft.seconds > 0
+                ? `Ile do emerytury?`
+                : `Ile na emeryturze?`}
+            </h1>
+            {Object.entries(timeLeft).map(([key, value]) => (
+              <div key={key} className={styles.row}>
+                <span className={styles.number}>{value}</span>
+                <span className={styles.unit}>
+                  {getUnitInPolish(key, value)}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div>
+            <h2>Data urodzenia</h2>
+            <DatePicker date={dateOfBirth} setDate={setDateOfBirth} />
+            <div className={styles.gender}>
+              <div>Kobieta</div>
+              <Switch
+                checked={male}
+                onChange={handleGenderChange}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+              <div>Mężczyzna</div>
             </div>
-          ))}
-          <div className={styles.footNote}>
-            A ile Tobie? Dowiedz się{" "}
-            <Link href="https://kalkulatory2.gofin.pl/Kalkulator-wieku-emerytalnego,12.html">
-              <a>tutaj</a>
-            </Link>
-            .
           </div>
         </div>
       </div>
