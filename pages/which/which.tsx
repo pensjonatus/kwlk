@@ -1,18 +1,16 @@
 import Layout from "../../components/layout";
-import TextField from "@mui/material/TextField";
 import { ReactElement, useEffect, useState } from "react";
 import styles from "./which.module.css";
 import { people } from "../../lib/people";
+import DatePicker from "../../components/date/datePicker";
 
 export const whichDescription =
   "Zawsze chciałaś/eś to wiedzieć. Teraz możesz, podaj tylko swoją datę urodzenia.";
 
 export default function Which() {
   const initialResult = <>No ciekawe 🤔</>;
-  const [year, setYear] = useState(1982);
-  const [month, setMonth] = useState(7);
-  const [day, setDay] = useState(10);
   const [result, setResult] = useState<ReactElement>(initialResult);
+  const [selectedDate, setSelectedDate] = useState(new Date("July 10, 1982"));
 
   function getNumberWithSpaces(number: number): string {
     return number.toLocaleString("pl-PL");
@@ -28,24 +26,8 @@ export default function Which() {
     );
   }
 
-  function formatDigits(input: number, digits: number): string {
-    return input.toLocaleString("en-US", {
-      minimumIntegerDigits: digits,
-      useGrouping: false,
-    });
-  }
-
   useEffect(
     function () {
-      const selectedDate: Date = new Date(
-        Date.parse(
-          `${formatDigits(year, 4)}-${formatDigits(month, 2)}-${formatDigits(
-            day,
-            2
-          )}`
-        )
-      );
-
       const selectedYear = selectedDate.getFullYear();
       const yearData = people.find((row) => row.year === selectedYear);
       if (!yearData) {
@@ -76,7 +58,7 @@ export default function Which() {
         );
       }
     },
-    [year, month, day]
+    [selectedDate]
   );
 
   return (
@@ -84,29 +66,7 @@ export default function Which() {
       <div className={styles.wrapper}>
         <h1>Którym jesteś człowiekiem?</h1>
         <p>{whichDescription}</p>
-        <div className={styles.date}>
-          <TextField
-            variant="outlined"
-            label="Rok"
-            value={year}
-            style={{ width: "5rem" }}
-            onChange={(event) => setYear(Number(event.target.value))}
-          />
-          <TextField
-            variant="outlined"
-            label="Miesiąc"
-            value={month}
-            style={{ width: "3rem" }}
-            onChange={(event) => setMonth(Number(event.target.value))}
-          />
-          <TextField
-            variant="outlined"
-            label="Dzień"
-            value={day}
-            style={{ width: "3rem" }}
-            onChange={(event) => setDay(Number(event.target.value))}
-          />
-        </div>
+        <DatePicker date={selectedDate} setDate={setSelectedDate} />
         <div>{result}</div>
       </div>
     </Layout>
