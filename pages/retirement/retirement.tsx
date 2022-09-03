@@ -1,7 +1,8 @@
-import { Switch } from "@mui/material";
+import { CircularProgress, Switch } from "@mui/material";
 import { useEffect, useState } from "react";
 import DatePicker from "../../components/date/datePicker";
 import Layout from "../../components/layout";
+import { storageKeys } from "../../lib/storage";
 import styles from "./retirement.module.css";
 
 export const retirementDescription =
@@ -71,36 +72,63 @@ export default function Retirement() {
     minutes: 0,
     seconds: 0,
   });
-  const [dateOfBirth, setDateOfBirth] = useState<Date>(
-    new Date("10 July 1982")
-  );
-  const [male, setMale] = useState(true);
+  const [dateOfBirth, setDateOfBirth] = useState<Date | undefined>();
+  const [male, setMale] = useState<boolean>();
 
   function handleGenderChange(event: React.ChangeEvent<HTMLInputElement>) {
     setMale(event.target.checked);
   }
 
+  useEffect(function () {
+    const dateFromStorage = localStorage.getItem(storageKeys.dateOfBirth);
+    if (dateFromStorage) {
+      setDateOfBirth(new Date(dateFromStorage));
+    } else {
+      setDateOfBirth(new Date("10 July 1982"));
+    }
+
+    const maleFromStorage = localStorage.getItem(storageKeys.male);
+    if (maleFromStorage) {
+      setMale(maleFromStorage === "true");
+    } else {
+      setMale(true);
+    }
+  }, []);
+
   useEffect(
     function () {
-      const retirementDate = new Date(dateOfBirth.getTime());
-      retirementDate.setFullYear(
-        retirementDate.getFullYear() + (male ? 65 : 60)
-      );
+      if (dateOfBirth && male !== undefined) {
+        localStorage.setItem(
+          storageKeys.dateOfBirth,
+          dateOfBirth.toDateString()
+        );
 
-      const retirementDateMilliseconds = retirementDate.getTime();
-      const interval = setInterval(function () {
-        const millisecondsNow = new Date().getTime();
-        const millisecondsTillTheEnd =
-          retirementDateMilliseconds - millisecondsNow;
-        setTimeLeft(getTimeFromMilliseconds(millisecondsTillTheEnd));
-      }, 1000);
+        localStorage.setItem(storageKeys.male, `${male}`);
 
-      return () => {
-        clearInterval(interval);
-      };
+        const retirementDate = new Date(dateOfBirth.getTime());
+        retirementDate.setFullYear(
+          retirementDate.getFullYear() + (male ? 65 : 60)
+        );
+
+        const retirementDateMilliseconds = retirementDate.getTime();
+        const interval = setInterval(function () {
+          const millisecondsNow = new Date().getTime();
+          const millisecondsTillTheEnd =
+            retirementDateMilliseconds - millisecondsNow;
+          setTimeLeft(getTimeFromMilliseconds(millisecondsTillTheEnd));
+        }, 1000);
+
+        return () => {
+          clearInterval(interval);
+        };
+      }
     },
     [dateOfBirth, male]
   );
+
+  if (!dateOfBirth) {
+    return <CircularProgress />;
+  }
 
   return (
     <Layout title="Ile do emerytury" description={retirementDescription}>
