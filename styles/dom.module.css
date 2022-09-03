@@ -16,10 +16,8 @@
 }
 
 .featureList {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1rem;
   max-width: 1000px;
   margin: 0 auto;
