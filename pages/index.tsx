@@ -17,12 +17,7 @@ export default function Home() {
           </div>
           <div className={styles.featureList}>
             {featured.map(({ title, description, link }, key) => (
-              <Card
-                key={key}
-                style={{
-                  width: 400,
-                }}
-              >
+              <Card key={key}>
                 <CardContent>
                   <h2>{title}</h2>
                   <p>{description}</p>
