@@ -5,7 +5,7 @@ import Layout from "../../components/layout";
 import styles from "./retirement.module.css";
 
 export const retirementDescription =
-  "Zawsze chciałaś/eś wiedzieć ile mi zostało do emerytury? Teraz możesz sprawdzić na tej stronie!";
+  "Zawsze chciałaś/eś wiedzieć ile Ci zostało do emerytury? Teraz możesz sprawdzić na tej stronie!";
 
 type TimeLeftShape = {
   years: number;
