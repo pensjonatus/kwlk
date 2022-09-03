@@ -1,7 +1,7 @@
 :root {
   --header-height: 56px;
   --footer-height: 62px;
-  --main-height: calc(100vh - var(--footer-height) - var(--header-height));
+  --main-height: calc(100vh - var(--header-height));
 }
 
 html,
