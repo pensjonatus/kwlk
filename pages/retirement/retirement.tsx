@@ -149,18 +149,19 @@ export default function Retirement() {
               </div>
             ))}
           </div>
-          <div>
+          <div className={styles.controls}>
             <h2>Data urodzenia</h2>
             <DatePicker date={dateOfBirth} setDate={setDateOfBirth} />
             <div className={styles.gender}>
-              <div>Kobieta</div>
+              <div>Kobieta*</div>
               <Switch
                 checked={male}
                 onChange={handleGenderChange}
                 inputProps={{ "aria-label": "controlled" }}
               />
-              <div>Mężczyzna</div>
+              <div>Mężczyzna*</div>
             </div>
+            <div className={styles.footNote}>* w oczach ZUSu</div>
           </div>
         </div>
       </div>
