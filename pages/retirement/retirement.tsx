@@ -36,31 +36,17 @@ function getTimeFromMilliseconds(milliseconds): TimeLeftShape {
 }
 
 const valueMappings = {
-  years: ["rok", "lata", "lat"],
-  months: ["miesiąc", "miesiące", "miesięcy"],
-  days: ["dzień", "dni", "dni"],
-  hours: ["godzina", "godziny", "godzin"],
-  minutes: ["minuta", "minuty", "minut"],
-  seconds: ["sekunda", "sekundy", "sekund"],
+  years: { many: "lat", one: "rok", few: "lata" },
+  months: { many: "miesięcy", one: "miesiąc", few: "miesiące" },
+  days: { many: "dni", one: "dzień", few: "dni" },
+  hours: { many: "godzin", one: "godzina", few: "godziny" },
+  minutes: { many: "minut", one: "minuta", few: "minuty" },
+  seconds: { many: "sekund", one: "sekunda", few: "sekundy" },
 };
 
 function getUnitInPolish(unitInEnglish: string, value: number) {
-  if (value === 1) {
-    return valueMappings[unitInEnglish][0];
-  }
-
-  if (["2", "3", "4"].includes(value.toString().slice(-1))) {
-    return valueMappings[unitInEnglish][1];
-  }
-
-  if (
-    value === 0 ||
-    Number.parseInt(value.toString().slice(-1)) > 4 ||
-    (value.toString().length > 1 &&
-      (value.toString().endsWith("1") || value.toString().endsWith("0")))
-  ) {
-    return valueMappings[unitInEnglish][2];
-  }
+  const pr = new Intl.PluralRules("pl-PL");
+  return valueMappings[unitInEnglish][pr.select(value)];
 }
 
 export default function Retirement() {
@@ -136,7 +122,7 @@ export default function Retirement() {
         <div className={styles.wrapper}>
           <div className={styles.countdown}>
             <h1 className={styles.title}>
-              {timeLeft.seconds > 0
+              {timeLeft.seconds >= 0
                 ? `Ile do emerytury?`
                 : `Ile na emeryturze?`}
             </h1>
