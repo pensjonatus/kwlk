@@ -1,10 +1,17 @@
+import TextField from "@mui/material/TextField";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../../components/layout";
 import styles from "./fight.module.css";
 import shirt from "./img/shirt.png";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 
 export const fightDescription =
   "Koszulka jakiej jeszcze nie było, która pozwala Ci wyrazić siebie i jednocześnie swój sprzeciw wobec sił, które próbują skrzywdzić Ciebie i Twoich najbliższych.";
@@ -78,59 +85,77 @@ const fields = [
   "Lojalność",
 ];
 
-function FormModal({ setVisible }) {
-  const [showToast, setShowToast] = useState(false);
-  function closeModal() {
-    setVisible(false);
-  }
+type PersonalFormDialogProps = {
+  open: boolean;
+  handleClose: () => void;
+};
 
-  function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-    setShowToast(true);
+function PersonalFormDialog({ open, handleClose }: PersonalFormDialogProps) {
+  const [rejected, setRejected] = useState(false);
+
+  function handleSubmit() {
+    setRejected(true);
   }
 
   return (
-    <div className={styles.formBackground}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <button className={styles.closeButton} onClick={closeModal}>
-          x
-        </button>
+    <Dialog open={open} onClose={handleClose}>
+      <form className={styles.form}>
+        <DialogTitle id="modal-modal-title">Opowiedz nam o sobie</DialogTitle>
+        <DialogContentText id="modal-modal-description">
+          Zanim przejdziemy dalej, chcielibyśmy poznać Cię lepiej.
+        </DialogContentText>
         {fields.map((f, i) => (
-          <div key={i} className={styles.formRow}>
-            <label htmlFor={f}>{f}</label>
-            <input id={f} type="text" className={styles.formField} />
-          </div>
+          <TextField label={f} key={i} fullWidth />
         ))}
-        <input className={styles.button} type="submit" value="Dalej" />
-        {showToast && (
-          <div className={styles.toast}>
-            <div>
-              Niestety, nie kwalifikujesz się do naszego programu
-              subskrycytyjnego. 😐
-            </div>
-            <button onClick={closeModal} className={styles.button}>
-              OK
-            </button>
-          </div>
-        )}
+        <DialogActions>
+          <Button variant="outlined" onClick={handleClose}>
+            Anuluj
+          </Button>
+          <Button variant="contained" onClick={handleSubmit}>
+            Dalej
+          </Button>
+        </DialogActions>
+        <div className={styles.alertHolder}>
+          {rejected && (
+            <Alert severity="error" onClose={() => setRejected(false)}>
+              <p>
+                Niestety nie kwalifikujesz się do naszego programu
+                subskrycytyjnego. 😞
+              </p>
+              <p>Może masz dla nas jakieś lepsze odpowiedzi?</p>
+            </Alert>
+          )}
+        </div>
       </form>
-    </div>
+    </Dialog>
   );
 }
 
 export default function Fight() {
   const [formVisible, setFormVisible] = useState(false);
 
+  function handleOpen() {
+    setFormVisible(true);
+  }
+
+  function handleClose() {
+    setFormVisible(false);
+  }
+
   return (
     <Layout title="Walcz z systemem!" description={fightDescription}>
-      {formVisible && <FormModal setVisible={setFormVisible} />}
+      <PersonalFormDialog open={formVisible} handleClose={handleClose} />
       <div className={styles.wrapper}>
         <h1 className={styles.titleFont}>Walcz z systemem!</h1>
         <div className={clsx(styles.titleFont, styles.description)}>
           {fightDescription}
         </div>
         <div className={styles.shirtFrame}>
-          <Image src={shirt} alt="piękna koszulka" objectFit="fill" />
+          <Image
+            src={shirt}
+            alt="piękna koszulka z napisem walcz z systemem"
+            objectFit="fill"
+          />
         </div>
         <section>
           <h2>Co dostajesz?</h2>
@@ -139,12 +164,14 @@ export default function Fight() {
               <h3 className={styles.titleFont}>{f.title}</h3>
               {f.description}
               {f.buttonCaption && (
-                <button
-                  className={clsx(styles.button, styles.impactFont)}
-                  onClick={() => setFormVisible(true)}
+                <Button
+                  size="large"
+                  fullWidth
+                  variant="contained"
+                  onClick={handleOpen}
                 >
                   {f.buttonCaption}
-                </button>
+                </Button>
               )}
             </div>
           ))}
