@@ -1,8 +1,9 @@
-import Link from "next/link";
 import Layout from "../components/layout";
 import styles from "../styles/dom.module.css";
 import { featured } from "../components/featured";
-import { Card, CardContent, CardActions } from "@mui/material";
+import FeatureCard from "../components/featureCard/featureCard";
+import Grid from "@mui/material/Unstable_Grid2";
+import Container from "@mui/material/Container";
 
 const pageDescription = "Strona artysty Paweł Kowaluk";
 
@@ -15,21 +16,15 @@ export default function Home() {
             <h1 className={styles.title}>kwlk</h1>
             <p>{pageDescription}</p>
           </div>
-          <div className={styles.featureList}>
-            {featured.map(({ title, description, link }, key) => (
-              <Card key={key}>
-                <CardContent>
-                  <h2>{title}</h2>
-                  <p>{description}</p>
-                </CardContent>
-                <CardActions className={styles.featureActions}>
-                  <Link href={link}>
-                    <a>Zobacz</a>
-                  </Link>
-                </CardActions>
-              </Card>
-            ))}
-          </div>
+          <Container>
+            <Grid container spacing={2}>
+              {featured.map((feature, key) => (
+                <Grid xs={12} sm={6} md={3} key={key}>
+                  <FeatureCard {...feature} />
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
         </div>
       </div>
     </Layout>
