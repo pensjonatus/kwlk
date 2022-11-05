@@ -17,7 +17,7 @@ export default function Home() {
             <p>{pageDescription}</p>
           </div>
           <Container>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} sx={{ padding: "3rem 0" }}>
               {featured.map((feature, key) => (
                 <Grid xs={12} sm={6} md={3} key={key}>
                   <FeatureCard {...feature} />
