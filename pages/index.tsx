@@ -1,6 +1,6 @@
 import Layout from "../components/layout";
 import styles from "../styles/dom.module.css";
-import { featured } from "../components/featured";
+import { featured } from "../components/featured/featured";
 import FeatureCard from "../components/featureCard/featureCard";
 import Grid from "@mui/material/Unstable_Grid2";
 import Container from "@mui/material/Container";
