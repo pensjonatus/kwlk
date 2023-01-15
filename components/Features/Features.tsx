@@ -9,7 +9,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import { height, width } from "@mui/system";
 
 export default function Features() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -23,6 +22,8 @@ export default function Features() {
     const newIndex = selectedIndex + offset;
     if (newIndex > featureList.length - 1) {
       setSelectedIndex(newIndex - featureList.length);
+    } else if (newIndex < 0) {
+      setSelectedIndex(featureList.length + newIndex);
     } else {
       setSelectedIndex(newIndex);
     }
