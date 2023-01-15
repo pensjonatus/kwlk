@@ -57,7 +57,7 @@ export default function Features() {
                 position: "absolute",
                 top: Math.abs(offset * 110),
                 right: offset * -300,
-                transition: "all 1s ease-out",
+                transition: "all 0.5s ease-out",
                 zIndex: -1,
               }}
               key={index}

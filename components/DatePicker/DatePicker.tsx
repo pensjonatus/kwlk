@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import React, { useEffect, useState } from "react";
-import styles from "./datePicker.module.css";
+import styles from "./DatePicker.module.css";
 
 type DatePickerProps = {
   date: Date;
