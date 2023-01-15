@@ -49,19 +49,23 @@ export default function Features() {
           borderRadius: "50%",
         }}
       >
-        {featureList.map(({ link, alt, image }, index) => (
-          <Box
-            sx={{
-              position: "absolute",
-              top: Math.abs(getOffset(index) * 100),
-              right: getOffset(index) * -280,
-              transition: "width 2s, height 2s",
-            }}
-            key={index}
-          >
-            <FeatureCard link={link} alt={alt} image={image} />
-          </Box>
-        ))}
+        {featureList.map(({ link, alt, image }, index) => {
+          const offset = getOffset(index);
+          return (
+            <Box
+              sx={{
+                position: "absolute",
+                top: Math.abs(offset * 110),
+                right: offset * -300,
+                transition: "all 1s ease-out",
+                zIndex: -1,
+              }}
+              key={index}
+            >
+              <FeatureCard link={link} alt={alt} image={image} />
+            </Box>
+          );
+        })}
       </Box>
       <Stack direction="row">
         <IconButton

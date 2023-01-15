@@ -45,25 +45,4 @@ export const featureList: Feature[] = [
     link: "/",
     alt: "",
   },
-  {
-    title: "Na razie nic 4",
-    description: <>Ta treść będzie wkrótce dostępna</>,
-    image: require("./img/placeholder.png"),
-    link: "/",
-    alt: "",
-  },
-  {
-    title: "Na razie nic 5",
-    description: <>Ta treść będzie wkrótce dostępna</>,
-    image: require("./img/placeholder.png"),
-    link: "/",
-    alt: "",
-  },
-  {
-    title: "Na razie nic 6",
-    description: <>Ta treść będzie wkrótce dostępna</>,
-    image: require("./img/placeholder.png"),
-    link: "/",
-    alt: "",
-  },
 ];
