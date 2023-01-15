@@ -1,24 +1,12 @@
-import Layout from "../components/SiteLayout/SiteLayout";
-import styles from "../styles/dom.module.css";
-import { featured } from "../components/featured/featured";
-import FeatureCard from "../components/FeatureCard";
-import Grid from "@mui/material/Unstable_Grid2";
-import Container from "@mui/material/Container";
+import Features from "../components/Features/Features";
+import SiteLayout from "../components/SiteLayout/SiteLayout";
 
 const pageDescription = "Strona artysty Paweł Kowaluk";
 
 export default function Home() {
   return (
-    <Layout title="Dom" description={pageDescription}>
-      <Container>
-        <Grid container spacing={2} sx={{ padding: "3rem 0" }}>
-          {featured.map((feature, key) => (
-            <Grid xs={12} sm={6} md={3} key={key}>
-              <FeatureCard {...feature} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </Layout>
+    <SiteLayout title="dom" description={pageDescription} hideHeader hideFooter>
+      <Features />
+    </SiteLayout>
   );
 }
