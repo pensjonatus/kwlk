@@ -56,9 +56,9 @@ export default function Features() {
               sx={{
                 position: "absolute",
                 top: Math.abs(offset * 110),
-                right: offset * -300,
+                right: offset * -200,
                 transition: "all 0.5s ease-out",
-                zIndex: -1,
+                zIndex: -1 * offset,
               }}
               key={index}
             >
