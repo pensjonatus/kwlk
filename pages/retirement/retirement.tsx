@@ -1,7 +1,7 @@
 import { CircularProgress, Switch } from "@mui/material";
 import { useEffect, useState } from "react";
 import DatePicker from "../../components/DatePicker/DatePicker";
-import Layout from "../../components/layout";
+import Layout from "../../components/SiteLayout/SiteLayout";
 import { storageKeys } from "../../lib/storage";
 import styles from "./retirement.module.css";
 

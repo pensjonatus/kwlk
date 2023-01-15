@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
-import styles from "./layout.module.css";
+import styles from "./SiteLayout.module.css";
 
 type LayoutProps = {
   title: string;

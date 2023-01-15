@@ -1,4 +1,4 @@
-import Layout from "../../components/layout";
+import Layout from "../../components/SiteLayout/SiteLayout";
 import { ReactElement, useEffect, useState } from "react";
 import styles from "./which.module.css";
 import { people } from "../../lib/people";
