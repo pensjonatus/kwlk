@@ -1,6 +1,4 @@
-import React from "react";
 import { fightDescription } from "../../pages/fight/fight";
-import { harmoniceDescription } from "../../pages/harmonica/harmonica";
 import { retirementDescription } from "../../pages/retirement/retirement";
 import { sensibleDescription } from "../../pages/sensible";
 import { whichDescription } from "../../pages/which/which";
@@ -34,13 +32,6 @@ export const featured: Feature[] = [
     link: "/fight",
     image: require("./img/jonathan-harrison-G4UAlDJeJFk-unsplash.jpg").default,
     alt: "Photo by Jonathan Harrison on Unsplash",
-  },
-  {
-    title: "Harmonijka",
-    description: <>{harmoniceDescription}</>,
-    link: "/harmonica",
-    image: require("./img/xandro-vandewalle-wgtJq5eTmLU-unsplash.jpg").default,
-    alt: "Photo by xandro Vandewalle on Unsplash",
   },
   {
     title: "Którym jesteś człowiekiem? 🤔",

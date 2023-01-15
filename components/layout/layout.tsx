@@ -20,26 +20,20 @@ export default function Layout({ title, description, children }: LayoutProps) {
       </Head>
       <header className={styles.header}>
         <Link href="/">
-          <a>
-            <Image
-              src="/kwlk.png"
-              alt="Link do strony domowej"
-              width={32}
-              height={32}
-            />
-          </a>
+          <Image
+            src="/kwlk.png"
+            alt="Link do strony domowej"
+            width={32}
+            height={32}
+          />
         </Link>
       </header>
 
       <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
-        <Link href="https://github.com/pensjonatus/kwlk">
-          <a>Github</a>
-        </Link>
-        <Link href="https://www.linkedin.com/in/pawel-kowaluk/">
-          <a>Autor</a>
-        </Link>
+        <Link href="https://github.com/pensjonatus/kwlk">Github</Link>
+        <Link href="https://www.linkedin.com/in/pawel-kowaluk/">Autor</Link>
       </footer>
     </div>
   );

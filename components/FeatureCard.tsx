@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import { Feature } from "../featured/featured";
+import { Feature } from "./featured/featured";
 import Image from "next/image";
 import Tooltip from "@mui/material/Tooltip";
 import { SxProps } from "@mui/system";

@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import { ReactElement, useEffect, useState } from "react";
 import styles from "./which.module.css";
 import { people } from "../../lib/people";
-import DatePicker from "../../components/date/datePicker";
+import DatePicker from "../../components/DatePicker/DatePicker";
 
 export const whichDescription =
   "Zawsze chciałaś/eś to wiedzieć. Teraz możesz, podaj tylko swoją datę urodzenia.";

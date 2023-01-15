@@ -177,12 +177,8 @@ export default function Fight() {
           ))}
         </section>
         <section className={styles.links}>
-          <Link href="/">
-            <a>W Twojej okolicy</a>
-          </Link>
-          <Link href="/">
-            <a>Zostań kompanem</a>
-          </Link>
+          <Link href="/">W Twojej okolicy</Link>
+          <Link href="/">Zostań kompanem</Link>
         </section>
       </div>
     </Layout>
