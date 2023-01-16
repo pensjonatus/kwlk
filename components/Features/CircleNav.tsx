@@ -38,13 +38,17 @@ type CircleNavProps = BoxProps & {
 
 function getOffsetIndex(index: number, selectedIndex: number): number {
   const newIndex = selectedIndex - index;
+
   if (newIndex > featureList.length - 1) {
     return newIndex - featureList.length;
-  } else if (newIndex < 0) {
-    return featureList.length + newIndex;
-  } else {
-    return newIndex;
   }
+
+  if (newIndex < 0) {
+    console.log("less than zero");
+    return featureList.length + newIndex;
+  }
+
+  return newIndex;
 }
 
 export default function CircleNav({
