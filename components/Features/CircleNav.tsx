@@ -36,6 +36,17 @@ type CircleNavProps = BoxProps & {
   borderThickness: number;
 };
 
+function getOffsetIndex(index: number, selectedIndex: number): number {
+  const newIndex = selectedIndex - index;
+  if (newIndex > featureList.length - 1) {
+    return newIndex - featureList.length;
+  } else if (newIndex < 0) {
+    return featureList.length + newIndex;
+  } else {
+    return newIndex;
+  }
+}
+
 export default function CircleNav({
   selectedIndex,
   circleRadius,
@@ -44,18 +55,7 @@ export default function CircleNav({
   ...otherProps
 }: CircleNavProps) {
   const circleArray = getCircleArray(featureList.length, circleRadius);
-
-  function getOffsetIndex(index: number, selectedIndex: number): number {
-    const offset = (selectedIndex - index) * -1;
-    const newIndex = selectedIndex + offset;
-    if (newIndex > featureList.length - 1) {
-      return newIndex - featureList.length;
-    } else if (newIndex < 0) {
-      return featureList.length + newIndex;
-    } else {
-      return newIndex;
-    }
-  }
+  console.log({ selectedIndex });
 
   return (
     <Box
@@ -86,6 +86,7 @@ export default function CircleNav({
       {featureList.map(({ link, alt, image }, index) => {
         const offsetIndex = getOffsetIndex(index, selectedIndex);
         const coordinates = circleArray[offsetIndex];
+        console.log("mapping", { alt, offsetIndex, selectedIndex });
         return (
           <Box
             className="falcon"
@@ -103,12 +104,25 @@ export default function CircleNav({
               className="falconLabel"
               sx={{
                 position: "absolute",
-                top: "50%",
-                left: "50%",
+                width: "100%",
+                height: "100%",
+                top: 0,
+                left: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 2,
               }}
             >
-              <Typography sx={{ color: "red" }} fontSize="20px">
+              <Typography sx={{ color: "white" }} fontSize="12px">
                 {offsetIndex}
+              </Typography>
+              <Typography
+                sx={{ color: "white" }}
+                fontSize="12px"
+                component="pre"
+              >
+                {JSON.stringify(coordinates, null, 2)}
               </Typography>
             </Box>
           </Box>
