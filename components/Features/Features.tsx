@@ -10,9 +10,37 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
+type CircleCoordinates = {
+  posX: number;
+  posY: number;
+};
+
+function getCircleArray(
+  numberOfItems: number,
+  radius: number
+): CircleCoordinates[] {
+  const numberOfSegments = 360 / numberOfItems;
+
+  const angles = [];
+  for (let i = 0; i <= numberOfItems; i++) {
+    angles.push((numberOfSegments / 180) * i * Math.PI);
+  }
+
+  const circleArray = [];
+  for (let i = 0; i < numberOfItems; i++) {
+    const posX = Math.round(radius * Math.cos(angles[i]));
+    const posY = Math.round(radius * Math.sin(angles[i]));
+    circleArray.push({ posX, posY });
+  }
+
+  return circleArray;
+}
+
 export default function Features() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const borderThickness = 10;
+  const circleRadius = 500;
+  const circleArray = getCircleArray(featureList.length, circleRadius);
 
   function getOffset(index: number): number {
     return (selectedIndex - index) * -1;
