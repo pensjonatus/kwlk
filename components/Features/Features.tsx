@@ -3,48 +3,17 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
-import FeatureCard, { cardDiameter } from "./FeatureCard";
+import { cardDiameter } from "./CircleCard";
 import { featureList } from "./featureList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-
-type CircleCoordinates = {
-  posX: number;
-  posY: number;
-};
-
-function getCircleArray(
-  numberOfItems: number,
-  radius: number
-): CircleCoordinates[] {
-  const numberOfSegments = 360 / numberOfItems;
-
-  const angles = [];
-  for (let i = 0; i <= numberOfItems; i++) {
-    angles.push((numberOfSegments / 180) * i * Math.PI);
-  }
-
-  const circleArray = [];
-  for (let i = 0; i < numberOfItems; i++) {
-    const posX = Math.round(radius * Math.cos(angles[i]));
-    const posY = Math.round(radius * Math.sin(angles[i]));
-    circleArray.push({ posX, posY });
-  }
-
-  return circleArray;
-}
+import CircleNav from "./CircleNav";
 
 export default function Features() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const borderThickness = 10;
-  const circleRadius = 500;
-  const circleArray = getCircleArray(featureList.length, circleRadius);
-
-  function getOffset(index: number): number {
-    return (selectedIndex - index) * -1;
-  }
+  const circleRadius = 400;
 
   function switchToOffsetItem(offset: number) {
     const newIndex = selectedIndex + offset;
@@ -63,38 +32,48 @@ export default function Features() {
         height: "100vh",
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
         flexDirection: "column",
         overflow: "hidden",
         paddingTop: "30px",
       }}
     >
-      <Box
-        sx={{
-          position: "relative",
-          width: cardDiameter + borderThickness * 2,
-          height: cardDiameter + borderThickness * 2,
-          border: `${borderThickness}px solid gold`,
-          borderRadius: "50%",
-        }}
+      <CircleNav
+        circleRadius={circleRadius}
+        selectedIndex={selectedIndex}
+        borderThickness={10}
       >
-        {featureList.map(({ link, alt, image }, index) => {
-          const offset = getOffset(index);
-          return (
-            <Box
-              sx={{
-                position: "absolute",
-                top: Math.abs(offset * 110),
-                right: offset * -200,
-                transition: "all 0.5s ease-out",
-                zIndex: -1 * offset,
-              }}
-              key={index}
-            >
-              <FeatureCard link={link} alt={alt} image={image} />
-            </Box>
-          );
-        })}
-      </Box>
+        <Link
+          href={featureList[selectedIndex].link}
+          style={{
+            color: "black",
+            textDecoration: "none",
+          }}
+        >
+          <Stack
+            sx={{
+              position: "relative",
+              width: cardDiameter,
+              height: cardDiameter,
+              border: `2px solid black`,
+              borderRadius: "50%",
+              textAlign: "center",
+              padding: 5,
+              backgroundColor: "white",
+            }}
+            alignItems="center"
+            justifyContent="center"
+            gap={2}
+          >
+            <Typography fontSize={16}>
+              {featureList[selectedIndex].title}
+            </Typography>
+            <Typography fontSize={13}>
+              {featureList[selectedIndex].description}
+            </Typography>
+          </Stack>
+        </Link>
+      </CircleNav>
       <Stack direction="row">
         <IconButton
           aria-label="poprzedni"
@@ -106,36 +85,6 @@ export default function Features() {
           <ArrowForwardIcon />
         </IconButton>
       </Stack>
-      <Link
-        href={featureList[selectedIndex].link}
-        style={{
-          color: "black",
-          textDecoration: "none",
-        }}
-      >
-        <Stack
-          sx={{
-            position: "relative",
-            width: cardDiameter,
-            height: cardDiameter,
-            border: `2px solid black`,
-            borderRadius: "50%",
-            textAlign: "center",
-            padding: 5,
-            backgroundColor: "white",
-          }}
-          alignItems="center"
-          justifyContent="center"
-          gap={2}
-        >
-          <Typography fontSize={16}>
-            {featureList[selectedIndex].title}
-          </Typography>
-          <Typography fontSize={13}>
-            {featureList[selectedIndex].description}
-          </Typography>
-        </Stack>
-      </Link>
     </Container>
   );
 }

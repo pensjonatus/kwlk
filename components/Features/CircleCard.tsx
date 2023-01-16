@@ -11,7 +11,7 @@ type FeatureCardProps = {
 
 export const cardDiameter = 300;
 
-export default function FeatureCard({ link, alt, image }: FeatureCardProps) {
+export default function CircleCard({ link, alt, image }: FeatureCardProps) {
   return (
     <Link href={link}>
       <Card
