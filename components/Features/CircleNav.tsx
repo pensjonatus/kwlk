@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { BoxProps } from "@mui/system";
 import CircleCard, { cardDiameter } from "./CircleCard";
 import { featureList } from "./featureList";
