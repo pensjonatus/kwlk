@@ -78,10 +78,10 @@ export default function Features() {
           aria-label="poprzedni"
           onClick={() => switchToOffsetItem(-1)}
         >
-          <ArrowBackIcon />
+          <ArrowBackIcon style={{ color: "white" }} />
         </IconButton>
         <IconButton aria-label="następny" onClick={() => switchToOffsetItem(1)}>
-          <ArrowForwardIcon />
+          <ArrowForwardIcon style={{ color: "white" }} />
         </IconButton>
       </Stack>
     </Container>

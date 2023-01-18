@@ -10,6 +10,7 @@ type LayoutProps = {
   children: ReactNode;
   hideHeader?: boolean;
   hideFooter?: boolean;
+  background?: React.CSSProperties["color"];
 };
 
 export default function Layout({
@@ -18,9 +19,16 @@ export default function Layout({
   children,
   hideHeader,
   hideFooter,
+  background,
 }: LayoutProps) {
   return (
-    <div className={styles.container}>
+    <div
+      style={{
+        maxWidth: "100vw",
+        minHeight: "var(--main-height)",
+        background,
+      }}
+    >
       <Head>
         <title>{`${title} | kwlk`}</title>
         <meta name="description" content={description} />

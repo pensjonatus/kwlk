@@ -33,14 +33,14 @@ export const featureList: Feature[] = [
   },
   {
     title: "Na razie nic 2",
-    description: <>Ta treść będzie wkrótce dostępna</>,
+    description: <>Ta treść też może będzie wkrótce dostępna</>,
     image: require("./img/placeholder.png"),
     link: "/",
     alt: "pl 2",
   },
   {
     title: "Na razie nic 3",
-    description: <>Ta treść będzie wkrótce dostępna</>,
+    description: <>Ta treść pewnie będzie kiedyś dostępna</>,
     image: require("./img/placeholder.png"),
     link: "/",
     alt: "pl 3",
