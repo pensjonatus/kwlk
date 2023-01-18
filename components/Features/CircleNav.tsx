@@ -44,7 +44,6 @@ function getOffsetIndex(index: number, selectedIndex: number): number {
   }
 
   if (newIndex < 0) {
-    console.log("less than zero");
     return featureList.length + newIndex;
   }
 
@@ -59,7 +58,6 @@ export default function CircleNav({
   ...otherProps
 }: CircleNavProps) {
   const circleArray = getCircleArray(featureList.length, circleRadius);
-  console.log({ selectedIndex });
 
   return (
     <Box
@@ -90,45 +88,19 @@ export default function CircleNav({
       {featureList.map(({ link, alt, image }, index) => {
         const offsetIndex = getOffsetIndex(index, selectedIndex);
         const coordinates = circleArray[offsetIndex];
-        console.log("mapping", { alt, offsetIndex, selectedIndex });
         return (
           <Box
             className="falcon"
             sx={{
               position: "absolute",
-              right: coordinates.posX,
-              top: coordinates.posY,
+              top: -1 * coordinates.posX + borderThickness * 2,
+              right: coordinates.posY,
               transition: "all 0.5s ease-out",
               zIndex: -1 * offsetIndex,
             }}
             key={index}
           >
             <CircleCard link={link} alt={alt} image={image} />
-            <Box
-              className="falconLabel"
-              sx={{
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                top: 0,
-                left: 0,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 2,
-              }}
-            >
-              <Typography sx={{ color: "white" }} fontSize="12px">
-                {offsetIndex}
-              </Typography>
-              <Typography
-                sx={{ color: "white" }}
-                fontSize="12px"
-                component="pre"
-              >
-                {JSON.stringify(coordinates, null, 2)}
-              </Typography>
-            </Box>
           </Box>
         );
       })}
