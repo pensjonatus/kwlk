@@ -94,7 +94,7 @@ export default function CircleNav({
               position: "absolute",
               top: -1 * coordinates.posX + borderThickness * 2,
               right: coordinates.posY,
-              transition: "all 0.5s ease-out",
+              transition: "all 0.3s ease-out",
               zIndex: -1 * offsetIndex,
             }}
             key={index}
