@@ -1,7 +1,9 @@
 import Box from "@mui/material/Box";
 import { BoxProps } from "@mui/system";
-import CircleCard, { cardDiameter } from "./CircleCard";
 import { featureList } from "./featureList";
+import Image from "next/image";
+import Link from "next/link";
+import Card from "@mui/material/Card";
 
 type CircleCoordinates = {
   posX: number;
@@ -33,6 +35,7 @@ type CircleNavProps = BoxProps & {
   selectedIndex: number;
   circleRadius: number;
   borderThickness: number;
+  cardDiameter: number;
 };
 
 function getOffsetIndex(index: number, selectedIndex: number): number {
@@ -53,6 +56,7 @@ export default function CircleNav({
   selectedIndex,
   circleRadius,
   borderThickness,
+  cardDiameter,
   children,
   ...otherProps
 }: CircleNavProps) {
@@ -65,13 +69,12 @@ export default function CircleNav({
         position: "relative",
         height: cardDiameter,
         width: cardDiameter,
-        borderRadius: "50%",
         zIndex: 300,
       }}
       {...otherProps}
     >
       {children}
-      <Box
+      <Card
         id="falconer"
         sx={{
           position: "absolute",
@@ -80,8 +83,9 @@ export default function CircleNav({
           width: cardDiameter + borderThickness * 2,
           height: cardDiameter + borderThickness * 2,
           border: `${borderThickness}px solid black`,
-          borderRadius: "50%",
+          backgroundColor: "transparent",
         }}
+        elevation={4}
       />
       {featureList.map(({ link, alt, image }, index) => {
         const offsetIndex = getOffsetIndex(index, selectedIndex);
@@ -93,12 +97,30 @@ export default function CircleNav({
               position: "absolute",
               top: -1 * coordinates.posX + borderThickness * 2,
               right: coordinates.posY,
-              transition: "all 0.3s ease-out",
+              transition: "all 0.4s ease-in-out",
               zIndex: -1 * offsetIndex,
             }}
             key={index}
           >
-            <CircleCard link={link} alt={alt} image={image} />
+            <Link href={link}>
+              <Card
+                sx={{
+                  width: cardDiameter,
+                  height: cardDiameter,
+                  overflow: "hidden",
+                  position: "relative",
+                  borderRadius: 0,
+                }}
+                elevation={3}
+              >
+                <Image
+                  src={image}
+                  width={cardDiameter}
+                  height={cardDiameter}
+                  alt={alt}
+                />
+              </Card>
+            </Link>
           </Box>
         );
       })}

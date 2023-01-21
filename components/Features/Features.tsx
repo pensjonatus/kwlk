@@ -2,17 +2,19 @@ import { useState } from "react";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
-import { cardDiameter } from "./CircleCard";
 import { featureList } from "./featureList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import CircleNav from "./CircleNav";
+import CentralLink from "./CentralLink";
 
 export default function Features() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const circleRadius = 400;
+  const circleRadius = 420;
+  const lineThickness = 5;
+  const cardDiameter = 300;
 
   function switchToOffsetItem(offset: number) {
     const newIndex = selectedIndex + offset;
@@ -35,55 +37,36 @@ export default function Features() {
         flexDirection: "column",
         overflow: "hidden",
         paddingTop: "30px",
+        border: `${lineThickness / 2}px solid black`,
       }}
     >
       <CircleNav
         circleRadius={circleRadius}
         selectedIndex={selectedIndex}
-        borderThickness={5}
+        borderThickness={lineThickness}
+        cardDiameter={cardDiameter}
       >
-        <Link
-          href={featureList[selectedIndex].link}
-          style={{
-            color: "black",
-            textDecoration: "none",
-          }}
-        >
-          <Stack
-            sx={{
-              position: "relative",
-              width: cardDiameter,
-              height: cardDiameter,
-              border: `2px solid black`,
-              borderRadius: "50%",
-              textAlign: "center",
-              padding: 5,
-              backgroundColor: "white",
-            }}
-            alignItems="center"
-            justifyContent="center"
-            gap={2}
-          >
-            <Typography fontSize={16}>
-              {featureList[selectedIndex].title}
-            </Typography>
-            <Typography fontSize={13}>
-              {featureList[selectedIndex].description}
-            </Typography>
+        <Stack alignItems="center" padding={2}>
+          <CentralLink
+            cardDiameter={cardDiameter}
+            selectedIndex={selectedIndex}
+          />
+          <Stack direction="row">
+            <IconButton
+              aria-label="poprzedni"
+              onClick={() => switchToOffsetItem(-1)}
+            >
+              <ArrowBackIcon />
+            </IconButton>
+            <IconButton
+              aria-label="następny"
+              onClick={() => switchToOffsetItem(1)}
+            >
+              <ArrowForwardIcon />
+            </IconButton>
           </Stack>
-        </Link>
+        </Stack>
       </CircleNav>
-      <Stack direction="row">
-        <IconButton
-          aria-label="poprzedni"
-          onClick={() => switchToOffsetItem(-1)}
-        >
-          <ArrowBackIcon />
-        </IconButton>
-        <IconButton aria-label="następny" onClick={() => switchToOffsetItem(1)}>
-          <ArrowForwardIcon />
-        </IconButton>
-      </Stack>
     </Container>
   );
 }
