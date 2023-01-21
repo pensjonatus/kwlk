@@ -25,10 +25,10 @@ export const featureList: Feature[] = [
     alt: "Photo by Ryoji Iwata on Unsplash",
   },
   {
-    title: "Na razie nic 1",
-    description: <>Ta treść będzie wkrótce dostępna</>,
-    image: require("./img/placeholder.png"),
-    link: "/",
+    title: "Wieczór",
+    description: <>Wieczorem jest spokojnie i cicho.</>,
+    image: require("../Evening/evening.png"),
+    link: "/evening",
     alt: "pl 1",
   },
   {

@@ -10,7 +10,7 @@ type LayoutProps = {
   children: ReactNode;
   hideHeader?: boolean;
   hideFooter?: boolean;
-  background?: React.CSSProperties["color"];
+  wrapperStyle?: React.CSSProperties;
 };
 
 export default function Layout({
@@ -19,14 +19,14 @@ export default function Layout({
   children,
   hideHeader,
   hideFooter,
-  background,
+  wrapperStyle,
 }: LayoutProps) {
   return (
     <div
       style={{
         maxWidth: "100vw",
         minHeight: "var(--main-height)",
-        background,
+        ...wrapperStyle,
       }}
     >
       <Head>

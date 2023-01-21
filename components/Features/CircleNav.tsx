@@ -66,7 +66,6 @@ export default function CircleNav({
         height: cardDiameter,
         width: cardDiameter,
         borderRadius: "50%",
-        backgroundColor: "mauve",
         zIndex: 300,
       }}
       {...otherProps}
@@ -80,7 +79,7 @@ export default function CircleNav({
           left: 0 - borderThickness,
           width: cardDiameter + borderThickness * 2,
           height: cardDiameter + borderThickness * 2,
-          border: `${borderThickness}px solid gold`,
+          border: `${borderThickness}px solid black`,
           borderRadius: "50%",
         }}
       />

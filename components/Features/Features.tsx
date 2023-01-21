@@ -40,7 +40,7 @@ export default function Features() {
       <CircleNav
         circleRadius={circleRadius}
         selectedIndex={selectedIndex}
-        borderThickness={10}
+        borderThickness={5}
       >
         <Link
           href={featureList[selectedIndex].link}
@@ -78,10 +78,10 @@ export default function Features() {
           aria-label="poprzedni"
           onClick={() => switchToOffsetItem(-1)}
         >
-          <ArrowBackIcon style={{ color: "white" }} />
+          <ArrowBackIcon />
         </IconButton>
         <IconButton aria-label="następny" onClick={() => switchToOffsetItem(1)}>
-          <ArrowForwardIcon style={{ color: "white" }} />
+          <ArrowForwardIcon />
         </IconButton>
       </Stack>
     </Container>
