@@ -1,4 +1,6 @@
+import { eveningDescription } from "../../pages/evening";
 import { retirementDescription } from "../../pages/retirement/retirement";
+import { soapDescription } from "../../pages/soap";
 import { whichDescription } from "../../pages/which/which";
 
 export type Feature = {
@@ -26,17 +28,17 @@ export const featureList: Feature[] = [
   },
   {
     title: "Wieczór",
-    description: <>Wieczorem jest spokojnie i cicho.</>,
+    description: <>{eveningDescription}</>,
     image: require("../Evening/evening.png"),
     link: "/evening",
-    alt: "pl 1",
+    alt: "widok świetlonego okna wieczorem",
   },
   {
-    title: "Na razie nic 2",
-    description: <>Ta treść też może będzie wkrótce dostępna</>,
-    image: require("./img/placeholder.png"),
-    link: "/",
-    alt: "pl 2",
+    title: "Mydło",
+    description: <>{soapDescription}</>,
+    image: require("./img/soap.png"),
+    link: "/soap",
+    alt: "logo soap",
   },
   {
     title: "Na razie nic 3",

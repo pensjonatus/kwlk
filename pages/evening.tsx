@@ -1,18 +1,18 @@
 import Evening from "../components/Evening/Evening";
-import { featureList } from "../components/Features/featureList";
-import Layout from "../components/SiteLayout/SiteLayout";
+import SiteLayout from "../components/SiteLayout/SiteLayout";
+
+export const eveningDescription = "Wieczorem jest spokojnie i cicho.";
 
 export default function EveningPage() {
-  const feature = featureList.find((f) => f.title === "Wieczór");
   return (
-    <Layout
-      title={feature.title}
-      description={feature.description.toString()}
+    <SiteLayout
+      title="Wieczór"
+      description={eveningDescription}
       hideHeader
       hideFooter
       wrapperStyle={{ backgroundColor: "black", height: "100vh" }}
     >
       <Evening />
-    </Layout>
+    </SiteLayout>
   );
 }

@@ -13,7 +13,7 @@ type LayoutProps = {
   wrapperStyle?: React.CSSProperties;
 };
 
-export default function Layout({
+export default function SiteLayout({
   title,
   description,
   children,
