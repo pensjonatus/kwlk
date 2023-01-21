@@ -8,33 +8,53 @@ type LayoutProps = {
   title: string;
   description: string;
   children: ReactNode;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
+  wrapperStyle?: React.CSSProperties;
 };
 
-export default function Layout({ title, description, children }: LayoutProps) {
+export default function SiteLayout({
+  title,
+  description,
+  children,
+  hideHeader,
+  hideFooter,
+  wrapperStyle,
+}: LayoutProps) {
   return (
-    <div className={styles.container}>
+    <div
+      style={{
+        maxWidth: "100vw",
+        minHeight: "var(--main-height)",
+        ...wrapperStyle,
+      }}
+    >
       <Head>
         <title>{`${title} | kwlk`}</title>
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className={styles.header}>
-        <Link href="/">
-          <Image
-            src="/kwlk.png"
-            alt="Link do strony domowej"
-            width={32}
-            height={32}
-          />
-        </Link>
-      </header>
+      {!hideHeader && (
+        <header className={styles.header}>
+          <Link href="/">
+            <Image
+              src="/kwlk.png"
+              alt="Link do strony domowej"
+              width={32}
+              height={32}
+            />
+          </Link>
+        </header>
+      )}
 
       <main className={styles.main}>{children}</main>
 
-      <footer className={styles.footer}>
-        <Link href="https://github.com/pensjonatus/kwlk">Github</Link>
-        <Link href="https://www.linkedin.com/in/pawel-kowaluk/">Autor</Link>
-      </footer>
+      {!hideFooter && (
+        <footer className={styles.footer}>
+          <Link href="https://github.com/pensjonatus/kwlk">Github</Link>
+          <Link href="https://www.linkedin.com/in/pawel-kowaluk/">Autor</Link>
+        </footer>
+      )}
     </div>
   );
 }

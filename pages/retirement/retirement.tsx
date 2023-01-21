@@ -1,7 +1,7 @@
 import { CircularProgress, Switch } from "@mui/material";
 import { useEffect, useState } from "react";
 import DatePicker from "../../components/DatePicker/DatePicker";
-import Layout from "../../components/SiteLayout/SiteLayout";
+import SiteLayout from "../../components/SiteLayout/SiteLayout";
 import { storageKeys } from "../../lib/storage";
 import styles from "./retirement.module.css";
 
@@ -117,7 +117,7 @@ export default function Retirement() {
   }
 
   return (
-    <Layout title="Ile do emerytury" description={retirementDescription}>
+    <SiteLayout title="Ile do emerytury" description={retirementDescription}>
       <div className={styles.backdrop}>
         <div className={styles.wrapper}>
           <div className={styles.countdown}>
@@ -151,6 +151,6 @@ export default function Retirement() {
           </div>
         </div>
       </div>
-    </Layout>
+    </SiteLayout>
   );
 }

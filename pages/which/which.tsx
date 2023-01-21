@@ -1,4 +1,4 @@
-import Layout from "../../components/SiteLayout/SiteLayout";
+import SiteLayout from "../../components/SiteLayout/SiteLayout";
 import { ReactElement, useEffect, useState } from "react";
 import styles from "./which.module.css";
 import { people } from "../../lib/people";
@@ -62,13 +62,16 @@ export default function Which() {
   );
 
   return (
-    <Layout title="Którym jesteś człowiekiem" description={whichDescription}>
+    <SiteLayout
+      title="Którym jesteś człowiekiem"
+      description={whichDescription}
+    >
       <div className={styles.wrapper}>
         <h1>Którym jesteś człowiekiem?</h1>
         <p>{whichDescription}</p>
         <DatePicker date={selectedDate} setDate={setSelectedDate} />
         <div>{result}</div>
       </div>
-    </Layout>
+    </SiteLayout>
   );
 }
