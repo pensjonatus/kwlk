@@ -8,7 +8,7 @@ export default function Features() {
   return (
     <Container sx={{ paddingTop: 4, paddingBottom: 4 }}>
       {featureList.map(({ title, description, link }) => (
-        <Box sx={{ textAlign: "center", padding: 3 }}>
+        <Box sx={{ textAlign: "center", padding: 3 }} key={link}>
           <Typography variant="h2">{title}</Typography>
           <Typography>{description}</Typography>
           <LinkButton href={link}>odwiedź {title}</LinkButton>

@@ -349,6 +349,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/anaheim@npm:^4.5.7":
+  version: 4.5.7
+  resolution: "@fontsource/anaheim@npm:4.5.7"
+  checksum: 8689cd6c8185f7d0c772df39bd09472e74f402344592c8dbcf467bcf3202c561a167e0c92019f5e14f7af5193d634ec44c36156623381d7a626f06540d705057
+  languageName: node
+  linkType: hard
+
 "@fontsource/roboto@npm:latest":
   version: 4.5.8
   resolution: "@fontsource/roboto@npm:4.5.8"
@@ -2501,6 +2508,7 @@ __metadata:
   dependencies:
     "@emotion/react": latest
     "@emotion/styled": latest
+    "@fontsource/anaheim": ^4.5.7
     "@fontsource/roboto": latest
     "@mui/icons-material": ^5.11.0
     "@mui/material": latest
