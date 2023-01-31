@@ -6,11 +6,14 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import KwlkThemeProvider from "../components/KwlkThemeProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Component {...pageProps} />
-    </LocalizationProvider>
+    <KwlkThemeProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <Component {...pageProps} />
+      </LocalizationProvider>
+    </KwlkThemeProvider>
   );
 }
