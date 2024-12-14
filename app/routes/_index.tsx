@@ -63,19 +63,7 @@ type Resource = {
 
 const resources: Resource[] = [
   {
-    href: "https://remix.run/start/quickstart",
-    text: "Quick Start (5 min)",
-  },
-  {
-    href: "https://remix.run/start/tutorial",
-    text: "Tutorial (30 min)",
-  },
-  {
-    href: "https://remix.run/docs",
-    text: "Remix Docs",
-  },
-  {
-    href: "https://rmx.as/discord",
-    text: "Join Discord",
+    href: "https://github.com/pensjonatus",
+    text: "my GitHub profile",
   },
 ];
