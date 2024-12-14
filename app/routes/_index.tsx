@@ -51,18 +51,6 @@ export default function Index() {
             ))}
           </ul>
         </nav>
-        <footer className="flex flex-col items-center gap-4">
-          <img
-            src="/plant-light.png"
-            alt="Remix"
-            className="block w-full dark:hidden"
-          />
-          <img
-            src="/plant-dark.png"
-            alt="Remix"
-            className="hidden w-full dark:block"
-          />
-        </footer>
       </div>
     </div>
   );
