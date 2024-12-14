@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -17,17 +18,17 @@ export default function Index() {
       <div className="flex flex-col items-center gap-16">
         <header className="flex flex-col items-center gap-9">
           <h1 className="leading text-2xl font-bold text-gray-800 dark:text-gray-100">
-            Welcome to <span className="sr-only">Remix</span>
+            Welcome to <span className="sr-only">kwlk</span>
           </h1>
           <div className="h-[144px] w-[434px]">
             <img
               src="/logo-light.png"
-              alt="Remix"
+              alt="kwlk"
               className="block w-full dark:hidden"
             />
             <img
               src="/logo-dark.png"
-              alt="Remix"
+              alt="kwlk"
               className="hidden w-full dark:block"
             />
           </div>
@@ -37,16 +38,14 @@ export default function Index() {
             What did you expect?
           </p>
           <ul>
-            {resources.map(({ href, text }) => (
-              <li key={href}>
-                <a
+            {resources.map(({ to, text }) => (
+              <li key={to}>
+                <Link
                   className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
+                  to={to}
                 >
                   {text}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -57,13 +56,13 @@ export default function Index() {
 }
 
 type Resource = {
-  href: string;
+  to: string;
   text: string;
 };
 
 const resources: Resource[] = [
   {
-    href: "https://github.com/pensjonatus",
-    text: "my GitHub profile",
+    to: "/retire",
+    text: "See a retirement countdown",
   },
 ];
