@@ -78,7 +78,7 @@ export function CountdownDisplay({ targetDate }: CountdownDisplayProps) {
       </div>
       <div className="mt-6">left until</div>
       <div className="text-3xl">
-        {targetDate.getDate()}.{targetDate.getMonth()}.
+        {targetDate.getDate()}.{targetDate.getMonth() + 1}.
         {targetDate.getFullYear()}
       </div>
     </div>
