@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { PageLayout } from "~/components/PageLayout";
-import { RetirementCountdown } from "~/components/RetirementCountdown";
+import { RetirementManager } from "~/components/Retirement/RetirementManager";
 
 export const meta: MetaFunction = () => {
   return [
@@ -13,7 +13,9 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Retire() {
-  return <PageLayout title="How long until you can retire?">
-    <RetirementCountdown />
-  </PageLayout>;
+  return (
+    <PageLayout title="How long until you can retire?">
+      <RetirementManager />
+    </PageLayout>
+  );
 }
