@@ -1,10 +1,16 @@
+import { ChangeEvent } from "react";
+
 type DateSelectorProps = {
-  setDate: (newDate: Date) => void;
+  id: string;
+  date: string;
+  setDate: (newDate: string) => void;
   label: string;
 };
 
-export function DateSelector({ setDate, label }: DateSelectorProps) {
-  const id = "retirement-date-selector";
+export function DateSelector({ id, date, setDate, label }: DateSelectorProps) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setDate(event.target.value);
+  }
 
   return (
     <form className="flex flex-col gap-3 mt-8 mx-auto py-4 px-10 dark:bg-slate-900 bg-slate-400 rounded-lg">
@@ -13,7 +19,8 @@ export function DateSelector({ setDate, label }: DateSelectorProps) {
         id={id}
         type="date"
         className="px-6 py-4"
-        onChange={(event) => setDate(new Date(event.target.value))}
+        onChange={handleChange}
+        value={date}
       />
     </form>
   );
