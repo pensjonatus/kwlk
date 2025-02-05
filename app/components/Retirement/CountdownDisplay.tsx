@@ -55,7 +55,7 @@ export function CountdownDisplay({ targetDate }: CountdownDisplayProps) {
   if (timeDisplay === null) {
     return (
       <div className="h-[260px] flex flex-col justify-center align-middle text-center">
-        <div>waiting...</div>
+        <div>calculating...</div>
       </div>
     );
   }
