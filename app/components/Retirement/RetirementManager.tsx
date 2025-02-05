@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CountdownDisplay } from "./CountdownDisplay";
-import { DateSelector } from "./DateSelector";
+import { DateSelector } from "../DateSelector";
 
 const retirementDateLocalStorageKey = "retirementDate";
 
@@ -31,7 +31,11 @@ export function RetirementManager() {
   return (
     <div className="flex flex-col h-screen align-middle justify-around">
       <CountdownDisplay targetDate={retirementDate} />
-      <DateSelector setDate={updateRetirementDate} />
+      <DateSelector
+        setDate={updateRetirementDate}
+        label="What's your date of birth?"
+      />
+      <RetirementAgeSelector />
     </div>
   );
 }
