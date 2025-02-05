@@ -1,37 +1,56 @@
 import { useEffect, useState } from "react";
+import { DateSelector } from "../DateSelector";
 import { CountdownDisplay } from "./CountdownDisplay";
-import { DateSelector } from "./DateSelector";
+import { RetirementAgeSelector } from "./RetirementAgeSelector";
 
-const retirementDateLocalStorageKey = "retirementDate";
+const dateOfBirthLocalStorageKey = "dateOfBirth";
 
-function getInitialRetirementDate() {
-  const savedRetirementDate = localStorage.getItem(
-    retirementDateLocalStorageKey
-  );
-
-  if (savedRetirementDate) {
-    return new Date(savedRetirementDate);
-  }
-
-  return new Date("2069-01-01");
+function getRetirementDate(dateOfBirth: Date, age: number) {
+  return new Date(dateOfBirth.setFullYear(dateOfBirth.getFullYear() + age));
 }
 
 export function RetirementManager() {
-  const [retirementDate, setRetirementDate] = useState<Date>(new Date());
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [age, setAge] = useState(65);
 
-  function updateRetirementDate(newDate: Date) {
-    localStorage.setItem(retirementDateLocalStorageKey, newDate.toDateString());
-    setRetirementDate(newDate);
+  function updateDateOfBirth(newDate: string) {
+    localStorage.setItem(dateOfBirthLocalStorageKey, newDate);
+    setDateOfBirth(newDate);
   }
 
   useEffect(() => {
-    setRetirementDate(getInitialRetirementDate());
+    const dateOfBirthFromStorage = localStorage.getItem(
+      dateOfBirthLocalStorageKey
+    );
+    console.log("Found date in local storage", dateOfBirthFromStorage);
+
+    if (dateOfBirthFromStorage) {
+      setDateOfBirth(dateOfBirthFromStorage);
+    }
   }, []);
+
+  useEffect(() => {
+    console.log("useEffect triggered on date of birth", dateOfBirth);
+  }, [dateOfBirth]);
 
   return (
     <div className="flex flex-col h-screen align-middle justify-around">
-      <CountdownDisplay targetDate={retirementDate} />
-      <DateSelector setDate={updateRetirementDate} />
+      <CountdownDisplay
+        targetDate={getRetirementDate(new Date(dateOfBirth), age)}
+      />
+      <div className="flex flex-col">
+        <RetirementAgeSelector
+          label="At what age do you want to retire?"
+          setAge={setAge}
+          age={age}
+        />
+        <DateSelector
+          id="birthday-date-selector"
+          setDate={updateDateOfBirth}
+          date={dateOfBirth}
+          label="What's your date of birth?"
+        />
+      </div>
     </div>
   );
 }
