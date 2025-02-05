@@ -61,6 +61,14 @@ export function CountdownDisplay({ targetDate }: CountdownDisplayProps) {
   }
   const { seconds, minutes, hours, days, years } = timeDisplay;
 
+  if (years === "NaN") {
+    return (
+      <div className="h-[260px] flex flex-col justify-center align-middle text-center">
+        <div>Enter your date of birth below</div>
+      </div>
+    );
+  }
+
   return (
     <div id="countdown" className="text-center px-4">
       <div className="text-7xl mb-2 flex justify-center gap-4">
